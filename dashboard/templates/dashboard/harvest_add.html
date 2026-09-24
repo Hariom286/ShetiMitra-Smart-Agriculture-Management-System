@@ -1,0 +1,296 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Add New Harvest" %} - ShetiMitra
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <section class="form-page harvest-form-page">
+
+        <div class="form-header">
+            <h1>🌾 {% trans "Add New Harvest" %}</h1>
+
+            <p>
+                {% trans "Enter harvest details below." %}
+            </p>
+        </div>
+
+
+        <form method="POST" class="farmer-form">
+
+            {% csrf_token %}
+
+
+            <!-- Crop -->
+
+            <div class="form-group">
+
+                <label for="crop">
+                    🌱 {% trans "Crop" %}
+                </label>
+
+                <select
+                    name="crop"
+                    id="crop"
+                    required
+                >
+
+                    <option value="">
+                        -- {% trans "Select Crop" %} --
+                    </option>
+
+                    {% for crop in crops %}
+
+                    <option value="{{ crop.crop_id }}">
+
+                        {{ crop.crop_name }}
+                        -
+                        {{ crop.farm.farm_name }}
+
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <!-- Harvest Date -->
+
+            <div class="form-group">
+
+                <label for="harvest_date">
+                    📅 {% trans "Harvest Date" %}
+                </label>
+
+                <input
+                    type="date"
+                    name="harvest_date"
+                    id="harvest_date"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Quantity -->
+
+            <div class="form-group">
+
+                <label for="quantity">
+                    ⚖️ {% trans "Quantity" %}
+                </label>
+
+                <input
+                    type="number"
+                    name="quantity"
+                    id="quantity"
+                    step="0.01"
+                    min="0"
+                    placeholder="{% trans 'Enter quantity' %}"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Unit -->
+
+            <div class="form-group">
+
+                <label for="unit">
+                    📦 {% trans "Unit" %}
+                </label>
+
+                <select
+                    name="unit"
+                    id="unit"
+                    required
+                >
+
+                    <option value="">
+                        -- {% trans "Select Unit" %} --
+                    </option>
+
+                    <option value="kg">
+                        kg
+                    </option>
+
+                    <option value="quintal">
+                        {% trans "Quintal" %}
+                    </option>
+
+                    <option value="ton">
+                        {% trans "Ton" %}
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Quality -->
+
+            <div class="form-group">
+
+                <label for="quality">
+                    ⭐ {% trans "Quality" %}
+                </label>
+
+                <input
+                    type="text"
+                    name="quality"
+                    id="quality"
+                    placeholder="{% trans 'Enter quality' %}"
+                >
+
+            </div>
+
+
+            <!-- Notes -->
+
+            <div class="form-group">
+
+                <label for="notes">
+                    📝 {% trans "Notes" %}
+                </label>
+
+                <textarea
+                    name="notes"
+                    id="notes"
+                    rows="4"
+                    placeholder="{% trans 'Enter notes' %}"
+                ></textarea>
+
+            </div>
+
+
+            <!-- Buttons -->
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    💾 {% trans "Save Harvest" %}
+                </button>
+
+
+                <a
+                    href="{% url 'harvest_list' %}"
+                    class="secondary-button"
+                >
+                    ← {% trans "Back to Harvest List" %}
+                </a>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</div>
+
+
+<style>
+
+.harvest-form-page {
+    max-width: 850px;
+    margin: 30px auto;
+}
+
+.harvest-form-page .form-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.harvest-form-page .form-header h1 {
+    margin-bottom: 10px;
+}
+
+.harvest-form-page .form-header p {
+    color: #666;
+    margin: 0;
+}
+
+.harvest-form-page .farmer-form {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.10);
+}
+
+.harvest-form-page .form-group {
+    margin-bottom: 20px;
+}
+
+.harvest-form-page .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.harvest-form-page input,
+.harvest-form-page select,
+.harvest-form-page textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 15px;
+    font-family: inherit;
+    background: #fff;
+}
+
+.harvest-form-page input:focus,
+.harvest-form-page select:focus,
+.harvest-form-page textarea:focus {
+    outline: none;
+    border-color: #2e7d32;
+}
+
+.harvest-form-page textarea {
+    resize: vertical;
+}
+
+.harvest-form-page .form-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+
+    .harvest-form-page {
+        margin: 15px auto;
+    }
+
+    .harvest-form-page .farmer-form {
+        padding: 20px 15px;
+    }
+
+    .harvest-form-page .form-actions {
+        flex-direction: column;
+    }
+
+    .harvest-form-page .form-actions a,
+    .harvest-form-page .form-actions button {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+}
+
+</style>
+
+{% endblock %}

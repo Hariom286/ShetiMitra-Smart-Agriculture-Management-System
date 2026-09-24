@@ -1,0 +1,223 @@
+{% load static %}
+{% load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Farm Management - ShetiMitra</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=6">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        🌾 ShetiMitra
+    </div>
+
+    <div class="tagline">
+        {% translate "Smart Agriculture Management System" %}
+    </div>
+
+    <div class="language-selector">
+        <form method="post" action="{% url 'set_language' %}">
+            {% csrf_token %}
+
+            <input type="hidden" name="next" value="{{ request.get_full_path }}">
+
+            <select name="language" onchange="this.form.submit()">
+
+                <option value="en"
+                    {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>
+                    English
+                </option>
+
+                <option value="mr"
+                    {% if LANGUAGE_CODE == 'mr' %}selected{% endif %}>
+                    मराठी
+                </option>
+
+                <option value="hi"
+                    {% if LANGUAGE_CODE == 'hi' %}selected{% endif %}>
+                    हिंदी
+                </option>
+
+            </select>
+        </form>
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <section class="page-header">
+
+        <div>
+
+            <h1>
+                🚜 {% translate "Farm Management" %}
+            </h1>
+
+            <p>
+                {% translate "View and manage registered farms." %}
+            </p>
+
+        </div>
+
+        <a href="{% url 'farm_add' %}" class="primary-button">
+            ➕ {% translate "Add New Farm" %}
+        </a>
+
+    </section>
+
+
+    <section class="table-section">
+
+        {% if farms %}
+
+        <div class="table-wrapper">
+
+            <table class="data-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>{% translate "ID" %}</th>
+
+                        <th>{% translate "Farm Name" %}</th>
+
+                        <th>{% translate "Farmer" %}</th>
+
+                        <th>{% translate "Land Area (Acres)" %}</th>
+
+                        <th>{% translate "Soil Type" %}</th>
+
+                        <th>{% translate "Irrigation Type" %}</th>
+
+                        <th>{% translate "Village" %}</th>
+
+                        <th>{% translate "Action" %}</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for farm in farms %}
+
+                    <tr>
+
+                        <td>
+                            {{ farm.farm_id }}
+                        </td>
+
+                        <td>
+                            <strong>{{ farm.farm_name }}</strong>
+                        </td>
+
+                        <td>
+                            {{ farm.farmer.name }}
+                        </td>
+
+                        <td>
+                            {{ farm.land_area_acres }}
+                        </td>
+
+                        <td>
+                            {{ farm.soil_type }}
+                        </td>
+
+                        <td>
+                            {{ farm.irrigation_type }}
+                        </td>
+
+                        <td>
+                            {{ farm.village }}
+                        </td>
+
+                        <td class="action-buttons">
+
+                            <a href="{% url 'farm_edit' farm.pk %}"
+                               class="edit-button">
+                                ✏️ {% translate "Edit" %}
+                            </a>
+
+                            <a href="{% url 'farm_delete' farm.pk %}"
+                               class="delete-button">
+                                🗑️ {% translate "Delete" %}
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                🚜
+            </div>
+
+            <h2>
+                {% translate "No Farms Found" %}
+            </h2>
+
+            <p>
+                {% translate "There are currently no farms registered in the system." %}
+            </p>
+
+            <a href="{% url 'farm_add' %}" class="primary-button">
+                ➕ {% translate "Add New Farm" %}
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <div class="back-section">
+
+        <a href="{% url 'home' %}" class="secondary-button">
+            ← {% translate "Back to Home" %}
+        </a>
+
+    </div>
+
+</main>
+
+
+<footer class="footer">
+
+    <p>
+        © 2026 ShetiMitra |
+        {% translate "Smart Agriculture Management System" %}
+    </p>
+
+</footer>
+
+</body>
+
+</html>

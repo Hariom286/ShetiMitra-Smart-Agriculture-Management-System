@@ -1,0 +1,248 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}
+    {% translate "Crop Management" %} - ShetiMitra
+{% endblock %}
+
+{% block content %}
+
+<style>
+    .data-table {
+        width: 100%;
+        border-collapse: collapse !important;
+        min-width: 1000px;
+    }
+
+    .data-table th {
+        background: #2e7d32 !important;
+        color: white !important;
+        padding: 14px 12px !important;
+        text-align: left !important;
+        font-size: 14px !important;
+        border: 2px solid #000 !important;
+    }
+
+    .data-table td {
+        padding: 14px 12px !important;
+        color: #444 !important;
+        font-size: 14px !important;
+        border: 2px solid #000 !important;
+    }
+
+    .data-table tbody tr:hover {
+        background: #f4f8f3 !important;
+    }
+
+    .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    @media (max-width: 600px) {
+        .table-wrapper {
+            overflow-x: auto;
+        }
+    }
+</style>
+
+
+<main class="container">
+
+    <!-- Page Header -->
+    <section class="page-header">
+
+        <div>
+            <h1>
+                🌱 {% translate "Crop Management" %}
+            </h1>
+
+            <p>
+                {% translate "View and manage crops cultivated on registered farms." %}
+            </p>
+        </div>
+
+        <a
+            href="{% url 'crop_add' %}"
+            class="primary-button"
+        >
+            ➕ {% translate "Add New Crop" %}
+        </a>
+
+    </section>
+
+
+    <!-- Crop Table -->
+    <section class="table-section">
+
+        {% if crops %}
+
+        <div class="table-wrapper">
+
+            <table class="data-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            {% translate "ID" %}
+                        </th>
+
+                        <th>
+                            {% translate "Crop Name" %}
+                        </th>
+
+                        <th>
+                            {% translate "Farm" %}
+                        </th>
+
+                        <th>
+                            {% translate "Farmer" %}
+                        </th>
+
+                        <th>
+                            {% translate "Season" %}
+                        </th>
+
+                        <th>
+                            {% translate "Sowing Date" %}
+                        </th>
+
+                        <th>
+                            {% translate "Expected Harvest" %}
+                        </th>
+
+                        <th>
+                            {% translate "Area (Acres)" %}
+                        </th>
+
+                        <th>
+                            {% translate "Actions" %}
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for crop in crops %}
+
+                    <tr>
+
+                        <td>
+                            {{ crop.crop_id }}
+                        </td>
+
+                        <td>
+                            <strong>
+                                {{ crop.crop_name }}
+                            </strong>
+                        </td>
+
+                        <td>
+                            {{ crop.farm.farm_name }}
+                        </td>
+
+                        <td>
+                            {{ crop.farm.farmer.name }}
+                        </td>
+
+                        <td>
+                            {{ crop.season }}
+                        </td>
+
+                        <td>
+                            {{ crop.sowing_date }}
+                        </td>
+
+                        <td>
+                            {{ crop.expected_harvest_date }}
+                        </td>
+
+                        <td>
+                            {{ crop.area_acres }}
+                        </td>
+
+                        <td class="action-buttons">
+
+                            <a
+                                href="{% url 'crop_edit' crop.pk %}"
+                                class="edit-button"
+                            >
+                                ✏️ {% translate "Edit" %}
+                            </a>
+
+                            <a
+                                href="{% url 'crop_delete' crop.pk %}"
+                                class="delete-button"
+                            >
+                                🗑️ {% translate "Delete" %}
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        {% else %}
+
+        <!-- Empty State -->
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                🌱
+            </div>
+
+            <h2>
+                {% translate "No Crops Found" %}
+            </h2>
+
+            <p>
+                {% translate "There are currently no crops registered in the system." %}
+            </p>
+
+            <a
+                href="{% url 'crop_add' %}"
+                class="primary-button"
+            >
+                ➕ {% translate "Add New Crop" %}
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- Back Button -->
+
+    <div class="back-section">
+
+        <a
+            href="{% url 'home' %}"
+            class="secondary-button"
+        >
+            ← {% translate "Back to Home" %}
+        </a>
+
+    </div>
+
+</main>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+# Virtual Environment
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Django local database
+db.sqlite3
+
+# Environment / secret files
+.env
+
+# IDE
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Django generated files
+*.log
+
+# Power BI
+*.pbix

@@ -1,0 +1,847 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% translate "Reports" %} - ShetiMitra</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=13">
+
+    <style>
+        /* ==============================
+           HEADER
+        ============================== */
+
+        header {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        header h1 {
+            margin-right: 25px;
+            white-space: nowrap;
+        }
+
+        header nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        /* ==============================
+           LANGUAGE SELECTOR
+        ============================== */
+
+        .language-selector {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .language-selector form {
+            margin: 0;
+        }
+
+        .language-selector select {
+            display: block;
+            min-width: 145px;
+            height: 40px;
+            padding: 6px 12px;
+            border: 2px solid #198754;
+            border-radius: 7px;
+            background-color: white;
+            color: #222;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .language-selector select:hover {
+            border-color: #146c43;
+        }
+
+        .language-selector select:focus {
+            border-color: #146c43;
+        }
+
+        /* ==============================
+           REPORT CONTAINER
+        ============================== */
+
+        .report-container {
+            width: 95%;
+            max-width: 1400px;
+            margin: 30px auto;
+        }
+
+        /* ==============================
+           REPORT HEADER
+        ============================== */
+
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .report-header h2 {
+            margin: 0;
+        }
+
+        .report-header p {
+            margin-top: 8px;
+            color: #666;
+        }
+
+        /* ==============================
+           PRINT BUTTON
+        ============================== */
+
+        .print-btn {
+            background: #198754;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .print-btn:hover {
+            background: #146c43;
+        }
+
+        /* ==============================
+           SUMMARY CARDS
+        ============================== */
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .summary-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        .summary-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 15px;
+            color: #555;
+        }
+
+        .summary-card .number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #198754;
+        }
+
+        /* ==============================
+           REPORT SECTION
+        ============================== */
+
+        .report-section {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        }
+
+        .report-section h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        /* ==============================
+           TABLE
+        ============================== */
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse !important;
+            background: white;
+        }
+
+        .data-table th {
+            background: #198754;
+            color: white;
+            padding: 12px;
+            border: 2px solid black;
+            text-align: left;
+        }
+
+        .data-table td {
+            padding: 10px;
+            border: 2px solid black;
+        }
+
+        .data-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .data-table tr:hover {
+            background: #eaf7ef;
+        }
+
+        /* ==============================
+           EMPTY MESSAGE
+        ============================== */
+
+        .empty-message {
+            text-align: center;
+            padding: 25px;
+            color: #777;
+            font-style: italic;
+        }
+
+        /* ==============================
+           FOOTER
+        ============================== */
+
+        .report-footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+        }
+
+        /* ==============================
+           PRINT
+        ============================== */
+
+        @media print {
+
+            header,
+            .print-btn,
+            .language-selector {
+                display: none !important;
+            }
+
+            body {
+                background: white;
+            }
+
+            .report-container {
+                width: 100%;
+                max-width: none;
+                margin: 0;
+            }
+
+            .report-section {
+                box-shadow: none;
+                border: 1px solid #000;
+                page-break-inside: avoid;
+            }
+
+            .summary-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* ==============================
+           RESPONSIVE
+        ============================== */
+
+        @media (max-width: 1200px) {
+
+            header {
+                flex-wrap: wrap;
+            }
+
+            header nav {
+                margin-top: 10px;
+            }
+
+            .language-selector {
+                margin-left: auto;
+                margin-top: 10px;
+            }
+
+            .summary-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            header h1 {
+                margin-right: 0;
+            }
+
+            header nav {
+                margin-top: 10px;
+            }
+
+            .language-selector {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+
+            .report-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .language-selector select {
+                min-width: 180px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =====================================
+         HEADER
+    ====================================== -->
+
+    <header>
+
+        <h1>🌾 ShetiMitra</h1>
+
+        <nav>
+
+            <a href="{% url 'home' %}">
+                {% translate "Home" %}
+            </a>
+
+            <a href="{% url 'farmer_list' %}">
+                {% translate "Farmers" %}
+            </a>
+
+            <a href="{% url 'farm_list' %}">
+                {% translate "Farms" %}
+            </a>
+
+            <a href="{% url 'crop_list' %}">
+                {% translate "Crops" %}
+            </a>
+
+            <a href="{% url 'activity_list' %}">
+                {% translate "Activities" %}
+            </a>
+
+            <a href="{% url 'harvest_list' %}">
+                {% translate "Harvests" %}
+            </a>
+
+            <a href="{% url 'reports' %}">
+                {% translate "Reports" %}
+            </a>
+
+        </nav>
+
+
+        <!-- =====================================
+             LANGUAGE SELECTOR
+        ====================================== -->
+
+        <div class="language-selector">
+
+            <form method="post" action="{% url 'set_language' %}">
+
+                {% csrf_token %}
+
+                <input type="hidden"
+                       name="next"
+                       value="{{ request.get_full_path }}">
+
+                <select name="language"
+                        onchange="this.form.submit()">
+
+                    <option value="en"
+                        {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>
+                        🌐 English
+                    </option>
+
+                    <option value="mr"
+                        {% if LANGUAGE_CODE == 'mr' %}selected{% endif %}>
+                        🌐 मराठी
+                    </option>
+
+                    <option value="hi"
+                        {% if LANGUAGE_CODE == 'hi' %}selected{% endif %}>
+                        🌐 हिंदी
+                    </option>
+
+                </select>
+
+            </form>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================
+         MAIN REPORT
+    ====================================== -->
+
+    <main class="report-container">
+
+
+        <!-- =====================================
+             REPORT TITLE
+        ====================================== -->
+
+        <div class="report-header">
+
+            <div>
+
+                <h2>
+                    {% translate "Agriculture Reports" %}
+                </h2>
+
+                <p>
+                    {% translate "View summary and detailed reports of your farming activities." %}
+                </p>
+
+            </div>
+
+
+            <button class="print-btn"
+                    onclick="window.print()">
+
+                🖨️ {% translate "Print Report" %}
+
+            </button>
+
+        </div>
+
+
+        <!-- =====================================
+             SUMMARY CARDS
+        ====================================== -->
+
+        <div class="summary-grid">
+
+
+            <!-- TOTAL FARMERS -->
+
+            <div class="summary-card">
+
+                <h3>
+                    {% translate "Total Farmers" %}
+                </h3>
+
+                <div class="number">
+                    {{ farmers|length }}
+                </div>
+
+            </div>
+
+
+            <!-- TOTAL FARMS -->
+
+            <div class="summary-card">
+
+                <h3>
+                    {% translate "Total Farms" %}
+                </h3>
+
+                <div class="number">
+                    {{ farms|length }}
+                </div>
+
+            </div>
+
+
+            <!-- TOTAL CROPS -->
+
+            <div class="summary-card">
+
+                <h3>
+                    {% translate "Total Crops" %}
+                </h3>
+
+                <div class="number">
+                    {{ crops|length }}
+                </div>
+
+            </div>
+
+
+            <!-- TOTAL ACTIVITIES -->
+
+            <div class="summary-card">
+
+                <h3>
+                    {% translate "Total Activities" %}
+                </h3>
+
+                <div class="number">
+                    {{ activities|length }}
+                </div>
+
+            </div>
+
+
+            <!-- TOTAL HARVESTS -->
+
+            <div class="summary-card">
+
+                <h3>
+                    {% translate "Total Harvests" %}
+                </h3>
+
+                <div class="number">
+                    {{ harvests|length }}
+                </div>
+
+            </div>
+
+
+            <!-- ACTIVITY COST -->
+
+            <div class="summary-card">
+
+                <h3>
+                    {% translate "Activity Cost" %}
+                </h3>
+
+                <div class="number">
+                    ₹{{ total_activity_cost|default:"0" }}
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             FARMING ACTIVITY REPORT
+        ====================================== -->
+
+        <section class="report-section">
+
+            <h2>
+                {% translate "Farming Activity Report" %}
+            </h2>
+
+
+            {% if activities %}
+
+            <div class="table-wrapper">
+
+                <table class="data-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                {% translate "Crop" %}
+                            </th>
+
+                            <th>
+                                {% translate "Activity" %}
+                            </th>
+
+                            <th>
+                                {% translate "Date" %}
+                            </th>
+
+                            <th>
+                                {% translate "Description" %}
+                            </th>
+
+                            <th>
+                                {% translate "Cost (₹)" %}
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for activity in activities %}
+
+                        <tr>
+
+                            <td>
+                                {{ activity.crop.crop_name }}
+                            </td>
+
+                            <td>
+                                {{ activity.activity_type }}
+                            </td>
+
+                            <td>
+                                {{ activity.activity_date }}
+                            </td>
+
+                            <td>
+                                {{ activity.description|default:"-" }}
+                            </td>
+
+                            <td>
+                                ₹{{ activity.cost }}
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            {% else %}
+
+            <div class="empty-message">
+
+                {% translate "No activity records available." %}
+
+            </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- =====================================
+             HARVEST REPORT
+        ====================================== -->
+
+        <section class="report-section">
+
+            <h2>
+                {% translate "Harvest Report" %}
+            </h2>
+
+
+            {% if harvests %}
+
+            <div class="table-wrapper">
+
+                <table class="data-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                {% translate "Crop" %}
+                            </th>
+
+                            <th>
+                                {% translate "Harvest Date" %}
+                            </th>
+
+                            <th>
+                                {% translate "Quantity" %}
+                            </th>
+
+                            <th>
+                                {% translate "Unit" %}
+                            </th>
+
+                            <th>
+                                {% translate "Quality" %}
+                            </th>
+
+                            <th>
+                                {% translate "Notes" %}
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for harvest in harvests %}
+
+                        <tr>
+
+                            <td>
+                                {{ harvest.crop.crop_name }}
+                            </td>
+
+                            <td>
+                                {{ harvest.harvest_date }}
+                            </td>
+
+                            <td>
+                                {{ harvest.quantity }}
+                            </td>
+
+                            <td>
+                                {{ harvest.unit }}
+                            </td>
+
+                            <td>
+                                {{ harvest.quality|default:"-" }}
+                            </td>
+
+                            <td>
+                                {{ harvest.notes|default:"-" }}
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            {% else %}
+
+            <div class="empty-message">
+
+                {% translate "No harvest records available." %}
+
+            </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- =====================================
+             CROP-WISE ACTIVITY COST
+        ====================================== -->
+
+        <section class="report-section">
+
+            <h2>
+                {% translate "Crop-wise Activity Cost" %}
+            </h2>
+
+
+            {% if crop_costs %}
+
+            <div class="table-wrapper">
+
+                <table class="data-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                {% translate "Crop" %}
+                            </th>
+
+                            <th>
+                                {% translate "Total Activity Cost (₹)" %}
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for item in crop_costs %}
+
+                        <tr>
+
+                            <td>
+                                {{ item.crop__crop_name }}
+                            </td>
+
+                            <td>
+                                ₹{{ item.total_cost }}
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            {% else %}
+
+            <div class="empty-message">
+
+                {% translate "No crop cost records available." %}
+
+            </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- =====================================
+             FOOTER
+        ====================================== -->
+
+        <div class="report-footer">
+
+            <p>
+
+                🌾 ShetiMitra -
+
+                {% translate "Agriculture Management System" %}
+
+            </p>
+
+        </div>
+
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,347 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Edit Harvest" %} - ShetiMitra
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+    /* =========================
+       HARVEST EDIT PAGE
+    ========================== */
+
+    .harvest-edit-page {
+        max-width: 850px;
+        margin: 0 auto;
+    }
+
+    .harvest-edit-card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.10);
+    }
+
+    .harvest-edit-header {
+        margin-bottom: 25px;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 18px;
+    }
+
+    .harvest-edit-header h1 {
+        margin: 0 0 8px 0;
+        font-size: 28px;
+    }
+
+    .harvest-edit-header p {
+        margin: 0;
+        color: #666;
+        font-size: 15px;
+    }
+
+
+    /* =========================
+       FORM
+    ========================== */
+
+    .harvest-form-group {
+        margin-bottom: 20px;
+    }
+
+    .harvest-form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .harvest-form-group input,
+    .harvest-form-group select,
+    .harvest-form-group textarea {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 11px 13px;
+        border: 1px solid #cfcfcf;
+        border-radius: 7px;
+        font-size: 15px;
+        background: #ffffff;
+        color: #333;
+        outline: none;
+    }
+
+    .harvest-form-group textarea {
+        min-height: 110px;
+        resize: vertical;
+    }
+
+    .harvest-form-group input:focus,
+    .harvest-form-group select:focus,
+    .harvest-form-group textarea:focus {
+        border-color: #2e7d32;
+        box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.10);
+    }
+
+
+    /* =========================
+       FORM ACTIONS
+    ========================== */
+
+    .harvest-form-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #e0e0e0;
+    }
+
+    .harvest-update-button {
+        display: inline-block;
+        padding: 11px 20px;
+        background: #2e7d32;
+        color: #ffffff !important;
+        border: none;
+        border-radius: 7px;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .harvest-update-button:hover {
+        background: #1b5e20;
+    }
+
+    .harvest-cancel-button {
+        display: inline-block;
+        padding: 11px 20px;
+        background: #eeeeee;
+        color: #333 !important;
+        border-radius: 7px;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .harvest-cancel-button:hover {
+        background: #dddddd;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 768px) {
+
+        .harvest-edit-card {
+            padding: 20px;
+        }
+
+        .harvest-edit-header h1 {
+            font-size: 23px;
+        }
+
+        .harvest-form-actions {
+            flex-direction: column;
+        }
+
+        .harvest-update-button,
+        .harvest-cancel-button {
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+    }
+
+</style>
+
+
+<div class="container harvest-edit-page">
+
+    <div class="harvest-edit-card">
+
+        <!-- =========================
+             HEADER
+        ========================== -->
+
+        <div class="harvest-edit-header">
+
+            <h1>
+                ✏️ {% trans "Edit Harvest" %}
+            </h1>
+
+            <p>
+                {% trans "Update harvest details below." %}
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             FORM
+        ========================== -->
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <!-- Crop -->
+
+            <div class="harvest-form-group">
+
+                <label for="crop">
+                    🌱 {% trans "Crop" %}
+                </label>
+
+                <select
+                    name="crop"
+                    id="crop"
+                    required
+                >
+
+                    {% for crop in crops %}
+
+                    <option
+                        value="{{ crop.crop_id }}"
+                        {% if crop.crop_id == harvest.crop_id %}
+                            selected
+                        {% endif %}
+                    >
+                        {{ crop.crop_name }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <!-- Harvest Date -->
+
+            <div class="harvest-form-group">
+
+                <label for="harvest_date">
+                    📅 {% trans "Harvest Date" %}
+                </label>
+
+                <input
+                    type="date"
+                    name="harvest_date"
+                    id="harvest_date"
+                    value="{{ harvest.harvest_date|date:'Y-m-d' }}"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Quantity -->
+
+            <div class="harvest-form-group">
+
+                <label for="quantity">
+                    ⚖️ {% trans "Quantity" %}
+                </label>
+
+                <input
+                    type="number"
+                    name="quantity"
+                    id="quantity"
+                    value="{{ harvest.quantity }}"
+                    step="0.01"
+                    min="0"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Unit -->
+
+            <div class="harvest-form-group">
+
+                <label for="unit">
+                    📏 {% trans "Unit" %}
+                </label>
+
+                <input
+                    type="text"
+                    name="unit"
+                    id="unit"
+                    value="{{ harvest.unit }}"
+                    placeholder="kg / quintal / ton"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Quality -->
+
+            <div class="harvest-form-group">
+
+                <label for="quality">
+                    ⭐ {% trans "Quality" %}
+                </label>
+
+                <input
+                    type="text"
+                    name="quality"
+                    id="quality"
+                    value="{{ harvest.quality|default:'' }}"
+                    placeholder="A / B / C"
+                >
+
+            </div>
+
+
+            <!-- Notes -->
+
+            <div class="harvest-form-group">
+
+                <label for="notes">
+                    📝 {% trans "Notes" %}
+                </label>
+
+                <textarea
+                    name="notes"
+                    id="notes"
+                    placeholder="{% trans 'Enter notes' %}"
+                >{{ harvest.notes|default:'' }}</textarea>
+
+            </div>
+
+
+            <!-- Buttons -->
+
+            <div class="harvest-form-actions">
+
+                <button
+                    type="submit"
+                    class="harvest-update-button"
+                >
+                    💾 {% trans "Update Harvest" %}
+                </button>
+
+
+                <a
+                    href="{% url 'harvest_list' %}"
+                    class="harvest-cancel-button"
+                >
+                    ← {% trans "Back to Harvest List" %}
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

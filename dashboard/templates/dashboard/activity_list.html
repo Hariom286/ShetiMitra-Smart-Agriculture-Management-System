@@ -1,0 +1,309 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as CURRENT_LANGUAGE %}
+
+<!DOCTYPE html>
+<html lang="{{ CURRENT_LANGUAGE }}">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% translate "Activity Management" %} - ShetiMitra</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=21">
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="logo">
+        🌾 ShetiMitra
+    </div>
+
+    <div class="tagline">
+        {% translate "Smart Agriculture Management System" %}
+    </div>
+
+    <!-- LANGUAGE SELECTOR -->
+
+    <div class="language-selector">
+
+        <form method="post" action="{% url 'set_language' %}">
+
+            {% csrf_token %}
+
+            <input
+                type="hidden"
+                name="next"
+                value="{{ request.get_full_path }}"
+            >
+
+            <select
+                name="language"
+                onchange="this.form.submit()"
+            >
+
+                <option
+                    value="en"
+                    {% if CURRENT_LANGUAGE == 'en' %}selected{% endif %}
+                >
+                    English
+                </option>
+
+                <option
+                    value="mr"
+                    {% if CURRENT_LANGUAGE == 'mr' %}selected{% endif %}
+                >
+                    मराठी
+                </option>
+
+                <option
+                    value="hi"
+                    {% if CURRENT_LANGUAGE == 'hi' %}selected{% endif %}
+                >
+                    हिंदी
+                </option>
+
+            </select>
+
+        </form>
+
+    </div>
+
+</header>
+
+
+<!-- ================= MAIN CONTAINER ================= -->
+
+<main class="container">
+
+
+    <!-- ================= PAGE HEADER ================= -->
+
+    <section class="page-header">
+
+        <div>
+
+            <h1>
+                🚜 {% translate "Activity Management" %}
+            </h1>
+
+            <p>
+                {% translate "Manage farming activities performed on crops." %}
+            </p>
+
+        </div>
+
+
+        <a
+            href="{% url 'activity_add' %}"
+            class="primary-button"
+        >
+            ➕ {% translate "Add Activity" %}
+        </a>
+
+    </section>
+
+
+    <!-- ================= ACTIVITY TABLE ================= -->
+
+    <section class="table-section">
+
+        {% if activities %}
+
+        <div class="table-wrapper">
+
+            <table class="data-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            {% translate "ID" %}
+                        </th>
+
+                        <th>
+                            {% translate "Crop" %}
+                        </th>
+
+                        <th>
+                            {% translate "Activity Type" %}
+                        </th>
+
+                        <th>
+                            {% translate "Date" %}
+                        </th>
+
+                        <th>
+                            {% translate "Description" %}
+                        </th>
+
+                        <th>
+                            {% translate "Cost (₹)" %}
+                        </th>
+
+                        <th>
+                            {% translate "Actions" %}
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for activity in activities %}
+
+                    <tr>
+
+                        <!-- ID -->
+
+                        <td>
+                            {{ activity.activity_id }}
+                        </td>
+
+
+                        <!-- CROP -->
+
+                        <td>
+                            {{ activity.crop.crop_name }}
+                        </td>
+
+
+                        <!-- ACTIVITY TYPE -->
+
+                        <td>
+                            {{ activity.activity_type }}
+                        </td>
+
+
+                        <!-- DATE -->
+
+                        <td>
+                            {{ activity.activity_date }}
+                        </td>
+
+
+                        <!-- DESCRIPTION -->
+
+                        <td>
+                            {{ activity.description|default:"-" }}
+                        </td>
+
+
+                        <!-- COST -->
+
+                        <td>
+                            ₹ {{ activity.cost }}
+                        </td>
+
+
+                        <!-- ACTIONS -->
+
+                        <td class="action-buttons">
+
+                            <a
+                                href="{% url 'activity_edit' activity.activity_id %}"
+                                class="edit-button"
+                            >
+                                ✏️ {% translate "Edit" %}
+                            </a>
+
+
+                            <a
+                                href="{% url 'activity_delete' activity.activity_id %}"
+                                class="delete-button"
+                            >
+                                🗑️ {% translate "Delete" %}
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- ================= EMPTY STATE ================= -->
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                📋
+            </div>
+
+            <h2>
+                {% translate "No Activities Found" %}
+            </h2>
+
+            <p>
+                {% translate "No farming activities have been added yet." %}
+            </p>
+
+            <a
+                href="{% url 'activity_add' %}"
+                class="primary-button"
+            >
+                ➕ {% translate "Add First Activity" %}
+            </a>
+
+        </div>
+
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- ================= BACK HOME ================= -->
+
+    <div class="back-section">
+
+        <a
+            href="{% url 'home' %}"
+            class="secondary-button"
+        >
+            ← {% translate "Back to Home" %}
+        </a>
+
+    </div>
+
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <p>
+
+        © 2026 ShetiMitra |
+
+        {% translate "Smart Agriculture Management System" %}
+
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

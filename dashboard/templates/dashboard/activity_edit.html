@@ -1,0 +1,405 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}
+    {% trans "Edit Activity" %} - ShetiMitra
+{% endblock %}
+
+{% block content %}
+
+<style>
+    /* ================================
+       Activity Edit Page
+       ================================ */
+
+    .activity-edit-page {
+        max-width: 900px;
+        margin: 30px auto;
+        padding: 0 20px;
+    }
+
+    /* Header */
+    .activity-edit-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 25px;
+        padding: 20px 25px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .activity-edit-title h1 {
+        margin: 0;
+        font-size: 28px;
+    }
+
+    .activity-edit-title p {
+        margin: 8px 0 0;
+        color: #666;
+        font-size: 15px;
+    }
+
+    /* Language Selector - RIGHT SIDE */
+    .activity-language-selector {
+        margin-left: auto;
+        flex-shrink: 0;
+    }
+
+    .activity-language-selector form {
+        margin: 0;
+    }
+
+    .activity-language-selector select {
+        padding: 9px 12px;
+        min-width: 120px;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background: #ffffff;
+        font-size: 14px;
+        cursor: pointer;
+        outline: none;
+    }
+
+    .activity-language-selector select:focus {
+        border-color: #4caf50;
+    }
+
+    /* Form Card */
+    .activity-edit-card {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .activity-form-group {
+        margin-bottom: 20px;
+    }
+
+    .activity-form-group label {
+        display: block;
+        margin-bottom: 7px;
+        font-weight: 600;
+        font-size: 15px;
+    }
+
+    .activity-form-group input,
+    .activity-form-group select,
+    .activity-form-group textarea {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 11px 13px;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        font-size: 15px;
+        font-family: inherit;
+        outline: none;
+    }
+
+    .activity-form-group input:focus,
+    .activity-form-group select:focus,
+    .activity-form-group textarea:focus {
+        border-color: #4caf50;
+    }
+
+    .activity-form-group textarea {
+        min-height: 110px;
+        resize: vertical;
+    }
+
+    /* Buttons */
+    .activity-form-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 25px;
+        flex-wrap: wrap;
+    }
+
+    .activity-update-button,
+    .activity-cancel-button {
+        display: inline-block;
+        padding: 11px 20px;
+        border-radius: 7px;
+        text-decoration: none;
+        border: none;
+        font-size: 15px;
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    .activity-update-button {
+        background: #4caf50;
+        color: white;
+    }
+
+    .activity-update-button:hover {
+        background: #43a047;
+    }
+
+    .activity-cancel-button {
+        background: #eeeeee;
+        color: #333;
+    }
+
+    .activity-cancel-button:hover {
+        background: #dddddd;
+    }
+
+    /* Mobile */
+    @media (max-width: 650px) {
+
+        .activity-edit-page {
+            padding: 0 12px;
+        }
+
+        .activity-edit-header {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .activity-language-selector {
+            margin-left: 0;
+            align-self: flex-end;
+        }
+
+        .activity-edit-title h1 {
+            font-size: 24px;
+        }
+
+        .activity-edit-card {
+            padding: 20px;
+        }
+
+        .activity-form-actions {
+            flex-direction: column;
+        }
+
+        .activity-update-button,
+        .activity-cancel-button {
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+    }
+</style>
+
+
+<div class="activity-edit-page">
+
+    <!-- ================================
+         Header
+         ================================ -->
+
+    <div class="activity-edit-header">
+
+        <div class="activity-edit-title">
+            <h1>
+                ✏️ {% trans "Edit Activity" %}
+            </h1>
+
+            <p>
+                {% trans "Update activity details below." %}
+            </p>
+        </div>
+
+
+        <!-- Language Translator - RIGHT SIDE -->
+
+        <div class="activity-language-selector">
+
+            <form action="{% url 'set_language' %}" method="post">
+
+                {% csrf_token %}
+
+                <input
+                    type="hidden"
+                    name="next"
+                    value="{{ request.get_full_path }}"
+                >
+
+                <select
+                    name="language"
+                    onchange="this.form.submit()"
+                >
+
+                    <option
+                        value="en"
+                        {% if LANGUAGE_CODE == "en" %}selected{% endif %}
+                    >
+                        English
+                    </option>
+
+                    <option
+                        value="mr"
+                        {% if LANGUAGE_CODE == "mr" %}selected{% endif %}
+                    >
+                        मराठी
+                    </option>
+
+                    <option
+                        value="hi"
+                        {% if LANGUAGE_CODE == "hi" %}selected{% endif %}
+                    >
+                        हिंदी
+                    </option>
+
+                </select>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================
+         Edit Activity Form
+         ================================ -->
+
+    <div class="activity-edit-card">
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <!-- Crop -->
+
+            <div class="activity-form-group">
+
+                <label for="crop">
+                    🌱 {% trans "Crop" %}
+                </label>
+
+                <select
+                    name="crop"
+                    id="crop"
+                    required
+                >
+
+                    {% for crop in crops %}
+
+                        <option
+                            value="{{ crop.crop_id }}"
+                            {% if crop.crop_id == activity.crop_id %}
+                                selected
+                            {% endif %}
+                        >
+                            {{ crop.crop_name }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <!-- Activity Name -->
+
+            <div class="activity-form-group">
+
+                <label for="activity_name">
+                    🚜 {% trans "Activity Name" %}
+                </label>
+
+                <input
+                    type="text"
+                    name="activity_name"
+                    id="activity_name"
+                    value="{{ activity.activity_name }}"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Activity Date -->
+
+            <div class="activity-form-group">
+
+                <label for="activity_date">
+                    📅 {% trans "Activity Date" %}
+                </label>
+
+                <input
+                    type="date"
+                    name="activity_date"
+                    id="activity_date"
+                    value="{{ activity.activity_date|date:'Y-m-d' }}"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Description -->
+
+            <div class="activity-form-group">
+
+                <label for="description">
+                    📝 {% trans "Description" %}
+                </label>
+
+                <textarea
+                    name="description"
+                    id="description"
+                    placeholder="{% trans 'Enter activity description' %}"
+                >{{ activity.description|default:'' }}</textarea>
+
+            </div>
+
+
+            <!-- Expense -->
+
+            <div class="activity-form-group">
+
+                <label for="expense">
+                    💰 {% trans "Expense" %}
+                </label>
+
+                <input
+                    type="number"
+                    name="expense"
+                    id="expense"
+                    value="{{ activity.expense }}"
+                    step="0.01"
+                    min="0"
+                >
+
+            </div>
+
+
+            <!-- Buttons -->
+
+            <div class="activity-form-actions">
+
+                <button
+                    type="submit"
+                    class="activity-update-button"
+                >
+                    💾 {% trans "Update Activity" %}
+                </button>
+
+
+                <a
+                    href="{% url 'activity_list' %}"
+                    class="activity-cancel-button"
+                >
+                    ← {% trans "Back to Activity List" %}
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

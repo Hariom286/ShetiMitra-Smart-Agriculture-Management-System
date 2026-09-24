@@ -1,0 +1,387 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% translate "Add Farmer" %} - ShetiMitra</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=14">
+
+    <style>
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .tagline {
+            margin-left: 20px;
+        }
+
+        /* =========================
+           LANGUAGE SELECTOR
+        ========================= */
+
+        .language-selector {
+            margin-left: auto;
+        }
+
+        .language-selector select {
+            min-width: 145px;
+            height: 40px;
+            padding: 6px 12px;
+            border: 2px solid #198754;
+            border-radius: 7px;
+            background: white;
+            color: #222;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-page {
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
+        .form-header {
+            margin-bottom: 25px;
+        }
+
+        .form-header h1 {
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            color: #666;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-actions {
+            margin-top: 25px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .header {
+                flex-wrap: wrap;
+            }
+
+            .tagline {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 8px;
+            }
+
+            .language-selector {
+                margin-left: auto;
+                margin-top: 10px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header class="header">
+
+        <div class="logo">
+            🌾 ShetiMitra
+        </div>
+
+        <div class="tagline">
+            {% translate "Smart Agriculture Management System" %}
+        </div>
+
+
+        <!-- LANGUAGE SELECTOR -->
+
+        <div class="language-selector">
+
+            <form method="post" action="{% url 'set_language' %}">
+
+                {% csrf_token %}
+
+                <input type="hidden"
+                       name="next"
+                       value="{{ request.get_full_path }}">
+
+                <select name="language"
+                        onchange="this.form.submit()">
+
+                    <option value="en"
+                        {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>
+                        🌐 English
+                    </option>
+
+                    <option value="mr"
+                        {% if LANGUAGE_CODE == 'mr' %}selected{% endif %}>
+                        🌐 मराठी
+                    </option>
+
+                    <option value="hi"
+                        {% if LANGUAGE_CODE == 'hi' %}selected{% endif %}>
+                        🌐 हिंदी
+                    </option>
+
+                </select>
+
+            </form>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================= -->
+
+    <main class="container">
+
+        <div class="form-page">
+
+
+            <!-- FORM HEADER -->
+
+            <div class="form-header">
+
+                <h1>
+                    👨‍🌾 {% translate "Add New Farmer" %}
+                </h1>
+
+                <p>
+                    {% translate "Enter farmer details below." %}
+                </p>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <form method="POST" class="farmer-form">
+
+                {% csrf_token %}
+
+
+                <!-- FARMER NAME -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        {% translate "Farmer Name" %}
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="{% translate 'Enter farmer name' %}"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- MOBILE -->
+
+                <div class="form-group">
+
+                    <label for="mobile">
+                        {% translate "Mobile Number" %}
+                    </label>
+
+                    <input
+                        type="text"
+                        id="mobile"
+                        name="mobile"
+                        placeholder="{% translate 'Enter mobile number' %}"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- VILLAGE + TALUKA -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="village">
+                            {% translate "Village" %}
+                        </label>
+
+                        <input
+                            type="text"
+                            id="village"
+                            name="village"
+                            placeholder="{% translate 'Enter village' %}"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="taluka">
+                            {% translate "Taluka" %}
+                        </label>
+
+                        <input
+                            type="text"
+                            id="taluka"
+                            name="taluka"
+                            placeholder="{% translate 'Enter taluka' %}"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- DISTRICT + LAND AREA -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="district">
+                            {% translate "District" %}
+                        </label>
+
+                        <input
+                            type="text"
+                            id="district"
+                            name="district"
+                            placeholder="{% translate 'Enter district' %}"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="land_area_acres">
+                            {% translate "Land Area (Acres)" %}
+                        </label>
+
+                        <input
+                            type="number"
+                            id="land_area_acres"
+                            name="land_area_acres"
+                            placeholder="{% translate 'Enter land area' %}"
+                            step="0.01"
+                            min="0"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="form-actions">
+
+                    <button type="submit" class="primary-button">
+
+                        💾 {% translate "Save Farmer" %}
+
+                    </button>
+
+
+                    <a href="{% url 'farmer_list' %}"
+                       class="secondary-button">
+
+                        ← {% translate "Back to Farmer List" %}
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 ShetiMitra |
+            {% translate "Smart Agriculture Management System" %}
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

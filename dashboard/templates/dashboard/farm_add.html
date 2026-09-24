@@ -1,0 +1,287 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as CURRENT_LANGUAGE %}
+
+<!DOCTYPE html>
+<html lang="{{ CURRENT_LANGUAGE }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% translate "Add Farm" %} - ShetiMitra</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=16">
+
+    <style>
+        .header {
+            position: relative;
+        }
+
+        .language-selector {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+
+        .language-selector select {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .language-selector {
+                position: static;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        🌾 ShetiMitra
+    </div>
+
+    <div class="tagline">
+        {% translate "Smart Agriculture Management System" %}
+    </div>
+
+    <!-- Language Selector -->
+    <div class="language-selector">
+
+        <form action="{% url 'set_language' %}" method="post">
+
+            {% csrf_token %}
+
+            <input
+                type="hidden"
+                name="next"
+                value="{{ request.get_full_path }}"
+            >
+
+            <select
+                name="language"
+                onchange="this.form.submit()"
+            >
+
+                <option value="en"
+                    {% if CURRENT_LANGUAGE == 'en' %}selected{% endif %}>
+                    English
+                </option>
+
+                <option value="mr"
+                    {% if CURRENT_LANGUAGE == 'mr' %}selected{% endif %}>
+                    मराठी
+                </option>
+
+                <option value="hi"
+                    {% if CURRENT_LANGUAGE == 'hi' %}selected{% endif %}>
+                    हिंदी
+                </option>
+
+            </select>
+
+        </form>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <section class="form-page">
+
+        <div class="form-header">
+
+            <h1>
+                🚜 {% translate "Add New Farm" %}
+            </h1>
+
+            <p>
+                {% translate "Enter farm details to register a new farm." %}
+            </p>
+
+        </div>
+
+
+        <form method="POST" class="farmer-form">
+
+            {% csrf_token %}
+
+
+            <!-- Farmer -->
+
+            <div class="form-group">
+
+                <label for="farmer">
+                    👨‍🌾 {% translate "Farmer" %}
+                </label>
+
+                <select
+                    name="farmer"
+                    id="farmer"
+                    required
+                >
+
+                    <option value="">
+                        {% translate "Select Farmer" %}
+                    </option>
+
+                    {% for farmer in farmers %}
+
+                    <option value="{{ farmer.farmer_id }}">
+                        {{ farmer.name }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <!-- Farm Name -->
+
+            <div class="form-group">
+
+                <label for="farm_name">
+                    🚜 {% translate "Farm Name" %}
+                </label>
+
+                <input
+                    type="text"
+                    name="farm_name"
+                    id="farm_name"
+                    placeholder="{% translate 'Enter farm name' %}"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Land Area -->
+
+            <div class="form-group">
+
+                <label for="land_area_acres">
+                    📐 {% translate "Land Area (Acres)" %}
+                </label>
+
+                <input
+                    type="number"
+                    name="land_area_acres"
+                    id="land_area_acres"
+                    placeholder="{% translate 'Enter land area' %}"
+                    step="0.01"
+                    min="0"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Soil Type -->
+
+            <div class="form-group">
+
+                <label for="soil_type">
+                    🌱 {% translate "Soil Type" %}
+                </label>
+
+                <input
+                    type="text"
+                    name="soil_type"
+                    id="soil_type"
+                    placeholder="{% translate 'Example: Black Soil' %}"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Irrigation Type -->
+
+            <div class="form-group">
+
+                <label for="irrigation_type">
+                    💧 {% translate "Irrigation Type" %}
+                </label>
+
+                <input
+                    type="text"
+                    name="irrigation_type"
+                    id="irrigation_type"
+                    placeholder="{% translate 'Example: Drip / Sprinkler' %}"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Village -->
+
+            <div class="form-group">
+
+                <label for="village">
+                    📍 {% translate "Village" %}
+                </label>
+
+                <input
+                    type="text"
+                    name="village"
+                    id="village"
+                    placeholder="{% translate 'Enter village name' %}"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Buttons -->
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    💾 {% translate "Save Farm" %}
+                </button>
+
+
+                <a
+                    href="{% url 'farm_list' %}"
+                    class="secondary-button"
+                >
+                    ← {% translate "Back to Farm List" %}
+                </a>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <p>
+        © 2026 ShetiMitra |
+        {% translate "Smart Agriculture Management System" %}
+    </p>
+
+</footer>
+
+</body>
+
+</html>

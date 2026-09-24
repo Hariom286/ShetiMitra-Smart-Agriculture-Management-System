@@ -1,0 +1,410 @@
+{% load static %}
+{% load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% translate "Farmer Management" %} - ShetiMitra
+    </title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}?v=5">
+
+    <style>
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 25px;
+        }
+
+        table.data-table {
+            width: 100%;
+            min-width: 1000px;
+            border-collapse: collapse !important;
+            border-spacing: 0 !important;
+            background: white;
+        }
+
+        table.data-table th {
+            background-color: #2e7d32 !important;
+            color: white !important;
+            padding: 14px 12px !important;
+            text-align: left !important;
+            font-size: 14px !important;
+            border: 2px solid black !important;
+        }
+
+        table.data-table td {
+            background-color: white !important;
+            color: #333 !important;
+            padding: 14px 12px !important;
+            font-size: 14px !important;
+            border: 2px solid black !important;
+        }
+
+        table.data-table tr {
+            border: 2px solid black !important;
+        }
+
+        table.data-table tbody tr:hover td {
+            background-color: #f1f8f1 !important;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .edit-button {
+            display: inline-block;
+            padding: 7px 12px;
+            background-color: #1976d2;
+            color: white !important;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+
+        .delete-button {
+            display: inline-block;
+            padding: 7px 12px;
+            background-color: #d32f2f;
+            color: white !important;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+
+        .edit-button:hover {
+            background-color: #125aa0;
+        }
+
+        .delete-button:hover {
+            background-color: #a51f1f;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .page-header h1 {
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            margin: 0;
+        }
+
+        /* LANGUAGE SELECTOR */
+
+        .language-selector {
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        .language-selector select {
+            display: block !important;
+            visibility: visible !important;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 2px solid #333;
+            font-size: 14px;
+            cursor: pointer;
+            background-color: white;
+            color: black;
+            min-width: 120px;
+        }
+
+        @media (max-width: 768px) {
+
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            🌾 ShetiMitra
+        </div>
+
+        <div class="tagline">
+            {% translate "Smart Agriculture Management System" %}
+        </div>
+
+
+        <!-- LANGUAGE SELECTOR -->
+
+        <div class="language-selector">
+
+            <form method="post"
+                  action="{% url 'set_language' %}">
+
+                {% csrf_token %}
+
+                <input type="hidden"
+                       name="next"
+                       value="{{ request.get_full_path }}">
+
+                <select name="language"
+                        onchange="this.form.submit()">
+
+                    <option value="en"
+                        {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>
+                        English
+                    </option>
+
+                    <option value="mr"
+                        {% if LANGUAGE_CODE == 'mr' %}selected{% endif %}>
+                        मराठी
+                    </option>
+
+                    <option value="hi"
+                        {% if LANGUAGE_CODE == 'hi' %}selected{% endif %}>
+                        हिंदी
+                    </option>
+
+                </select>
+
+            </form>
+
+        </div>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="container">
+
+        <section class="table-section">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="page-header">
+
+                <div>
+
+                    <h1>
+                        👨‍🌾 {% translate "Farmer Management" %}
+                    </h1>
+
+                    <p>
+                        {% translate "View and manage registered farmers." %}
+                    </p>
+
+                </div>
+
+
+                <a href="{% url 'farmer_add' %}"
+                   class="primary-button">
+
+                    ➕ {% translate "Add Farmer" %}
+
+                </a>
+
+            </div>
+
+
+            <!-- FARMER TABLE -->
+
+            <div class="table-wrapper">
+
+                <table class="data-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                {% translate "ID" %}
+                            </th>
+
+                            <th>
+                                {% translate "Name" %}
+                            </th>
+
+                            <th>
+                                {% translate "Mobile" %}
+                            </th>
+
+                            <th>
+                                {% translate "Village" %}
+                            </th>
+
+                            <th>
+                                {% translate "Taluka" %}
+                            </th>
+
+                            <th>
+                                {% translate "District" %}
+                            </th>
+
+                            <th>
+                                {% translate "Land Area (Acres)" %}
+                            </th>
+
+                            <th>
+                                {% translate "Action" %}
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for farmer in farmers %}
+
+                        <tr>
+
+                            <td>
+                                {{ farmer.farmer_id }}
+                            </td>
+
+                            <td>
+                                <strong>
+                                    {{ farmer.name }}
+                                </strong>
+                            </td>
+
+                            <td>
+                                {{ farmer.mobile }}
+                            </td>
+
+                            <td>
+                                {{ farmer.village }}
+                            </td>
+
+                            <td>
+                                {{ farmer.taluka }}
+                            </td>
+
+                            <td>
+                                {{ farmer.district }}
+                            </td>
+
+                            <td>
+                                {{ farmer.land_area_acres }}
+                            </td>
+
+                            <td>
+
+                                <div class="action-buttons">
+
+                                    <a href="{% url 'farmer_edit' farmer.farmer_id %}"
+                                       class="edit-button">
+
+                                        ✏️ {% translate "Edit" %}
+
+                                    </a>
+
+
+                                    <a href="{% url 'farmer_delete' farmer.farmer_id %}"
+                                       class="delete-button"
+                                       onclick="return confirm('Are you sure you want to delete this farmer?');">
+
+                                        🗑️ {% translate "Delete" %}
+
+                                    </a>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        {% empty %}
+
+                        <tr>
+
+                            <td colspan="8"
+                                style="text-align:center; padding:30px; border:2px solid black;">
+
+                                {% translate "No farmers registered yet." %}
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- BACK TO HOME -->
+
+            <div style="margin-top: 25px;">
+
+                <a href="{% url 'home' %}"
+                   class="secondary-button">
+
+                    ← {% translate "Back to Home" %}
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <p>
+
+            © 2026 ShetiMitra |
+
+            {% translate "Smart Agriculture Management System" %}
+
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

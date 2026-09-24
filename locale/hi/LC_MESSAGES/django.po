@@ -1,0 +1,1025 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ShetiMitra 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-17 23:04+0530\n"
+"Language: hi\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\dashboard\templates\base.html:41
+#: .\dashboard\templates\dashboard\activity_add.html:30
+#: .\dashboard\templates\dashboard\activity_add.html:272
+#: .\dashboard\templates\dashboard\activity_delete.html:29
+#: .\dashboard\templates\dashboard\activity_delete.html:175
+#: .\dashboard\templates\dashboard\activity_edit.html:28
+#: .\dashboard\templates\dashboard\activity_edit.html:238
+#: .\dashboard\templates\dashboard\activity_list.html:30
+#: .\dashboard\templates\dashboard\activity_list.html:300
+#: .\dashboard\templates\dashboard\crop_add.html:63
+#: .\dashboard\templates\dashboard\crop_add.html:369
+#: .\dashboard\templates\dashboard\crop_delete.html:25
+#: .\dashboard\templates\dashboard\crop_delete.html:129
+#: .\dashboard\templates\dashboard\crop_list.html:66
+#: .\dashboard\templates\dashboard\crop_list.html:315
+#: .\dashboard\templates\dashboard\crop_list.html:410
+#: .\dashboard\templates\dashboard\crop_list.html:712
+#: .\dashboard\templates\dashboard\farm_add.html:53
+#: .\dashboard\templates\dashboard\farm_add.html:280
+#: .\dashboard\templates\dashboard\farm_delete.html:138
+#: .\dashboard\templates\dashboard\farm_delete.html:268
+#: .\dashboard\templates\dashboard\farm_edit.html:63
+#: .\dashboard\templates\dashboard\farm_edit.html:352
+#: .\dashboard\templates\dashboard\farm_list.html:27
+#: .\dashboard\templates\dashboard\farm_list.html:216
+#: .\dashboard\templates\dashboard\farmer_add.html:150
+#: .\dashboard\templates\dashboard\farmer_add.html:379
+#: .\dashboard\templates\dashboard\farmer_list.html:165
+#: .\dashboard\templates\dashboard\farmer_list.html:401
+#: .\dashboard\templates\dashboard\harvest_delete.html:27
+#: .\dashboard\templates\dashboard\harvest_delete.html:199
+#: .\dashboard\templates\dashboard\harvest_list.html:29
+#: .\dashboard\templates\dashboard\harvest_list.html:265
+#: .\dashboard\templates\dashboard\home.html:31
+#: .\dashboard\templates\dashboard\home.html:406
+#: .\dashboard\templates\farmer_list.html:165
+#: .\dashboard\templates\farmer_list.html:401
+msgid "Smart Agriculture Management System"
+msgstr "स्मार्ट कृषि प्रबंधन प्रणाली"
+
+#: .\dashboard\templates\base.html:52
+#: .\dashboard\templates\dashboard\farmer_edit.html:63
+#: .\dashboard\templates\dashboard\reports.html:348
+msgid "Home"
+msgstr "मुख्यपृष्ठ"
+
+#: .\dashboard\templates\base.html:56
+#: .\dashboard\templates\dashboard\farmer_edit.html:67
+#: .\dashboard\templates\dashboard\reports.html:352
+msgid "Farmers"
+msgstr "किसान"
+
+#: .\dashboard\templates\base.html:60
+#: .\dashboard\templates\dashboard\farmer_edit.html:71
+#: .\dashboard\templates\dashboard\reports.html:356
+msgid "Farms"
+msgstr "खेत"
+
+#: .\dashboard\templates\base.html:64
+#: .\dashboard\templates\dashboard\farmer_edit.html:75
+#: .\dashboard\templates\dashboard\reports.html:360
+msgid "Crops"
+msgstr "फसलें"
+
+#: .\dashboard\templates\base.html:68
+#: .\dashboard\templates\dashboard\farmer_edit.html:79
+#: .\dashboard\templates\dashboard\reports.html:364
+msgid "Activities"
+msgstr "गतिविधियां"
+
+#: .\dashboard\templates\base.html:72
+#: .\dashboard\templates\dashboard\farmer_edit.html:83
+#: .\dashboard\templates\dashboard\reports.html:368
+msgid "Harvests"
+msgstr "कटाई"
+
+#: .\dashboard\templates\base.html:76
+#: .\dashboard\templates\dashboard\home.html:373
+#: .\dashboard\templates\dashboard\reports.html:12
+#: .\dashboard\templates\dashboard\reports.html:372
+msgid "Reports"
+msgstr "रिपोर्ट"
+
+#: .\dashboard\templates\base.html:158
+msgid "ShetiMitra – Smart Agriculture Management System"
+msgstr "शेतीमित्र – स्मार्ट कृषि प्रबंधन प्रणाली"
+
+
+# =========================
+# ACTIVITY
+# =========================
+
+#: .\dashboard\templates\dashboard\activity_add.html:13
+#: .\dashboard\templates\dashboard\activity_list.html:108
+msgid "Add Activity"
+msgstr "गतिविधि जोड़ें"
+
+#: .\dashboard\templates\dashboard\activity_add.html:93
+msgid "Add Farming Activity"
+msgstr "कृषि गतिविधि जोड़ें"
+
+#: .\dashboard\templates\dashboard\activity_add.html:97
+msgid "Add an activity performed on a crop."
+msgstr "फसल पर की गई गतिविधि जोड़ें।"
+
+#: .\dashboard\templates\dashboard\activity_add.html:119
+#: .\dashboard\templates\dashboard\activity_delete.html:109
+#: .\dashboard\templates\dashboard\activity_edit.html:108
+#: .\dashboard\templates\dashboard\activity_list.html:133
+#: .\dashboard\templates\dashboard\harvest_delete.html:103
+#: .\dashboard\templates\dashboard\harvest_list.html:120
+#: .\dashboard\templates\dashboard\reports.html:576
+#: .\dashboard\templates\dashboard\reports.html:672
+#: .\dashboard\templates\dashboard\reports.html:776
+msgid "Crop"
+msgstr "फसल"
+
+#: .\dashboard\templates\dashboard\activity_add.html:129
+#: .\dashboard\templates\dashboard\activity_edit.html:116
+msgid "Select Crop"
+msgstr "फसल चुनें"
+
+#: .\dashboard\templates\dashboard\activity_add.html:153
+#: .\dashboard\templates\dashboard\activity_edit.html:141
+#: .\dashboard\templates\dashboard\activity_list.html:137
+msgid "Activity Type"
+msgstr "गतिविधि का प्रकार"
+
+#: .\dashboard\templates\dashboard\activity_add.html:160
+msgid "Example: Fertilizer, Spraying, Weeding"
+msgstr "उदाहरण: खाद, छिड़काव, निराई"
+
+#: .\dashboard\templates\dashboard\activity_add.html:172
+#: .\dashboard\templates\dashboard\activity_edit.html:158
+msgid "Activity Date"
+msgstr "गतिविधि की तारीख"
+
+#: .\dashboard\templates\dashboard\activity_add.html:190
+#: .\dashboard\templates\dashboard\activity_edit.html:174
+#: .\dashboard\templates\dashboard\activity_list.html:145
+#: .\dashboard\templates\dashboard\reports.html:588
+msgid "Description"
+msgstr "विवरण"
+
+#: .\dashboard\templates\dashboard\activity_add.html:197
+msgid "Enter activity details..."
+msgstr "गतिविधि का विवरण दर्ज करें..."
+
+#: .\dashboard\templates\dashboard\activity_add.html:208
+#: .\dashboard\templates\dashboard\activity_list.html:149
+#: .\dashboard\templates\dashboard\reports.html:592
+msgid "Cost (₹)"
+msgstr "लागत (₹)"
+
+#: .\dashboard\templates\dashboard\activity_add.html:218
+msgid "Enter activity cost"
+msgstr "गतिविधि की लागत दर्ज करें"
+
+#: .\dashboard\templates\dashboard\activity_add.html:232
+msgid "Save Activity"
+msgstr "गतिविधि सहेजें"
+
+#: .\dashboard\templates\dashboard\activity_add.html:240
+#: .\dashboard\templates\dashboard\activity_delete.html:155
+#: .\dashboard\templates\dashboard\activity_edit.html:218
+#: .\dashboard\templates\dashboard\crop_delete.html:106
+#: .\dashboard\templates\dashboard\crop_edit.html:202
+#: .\dashboard\templates\dashboard\farm_delete.html:247
+#: .\dashboard\templates\dashboard\harvest_delete.html:181
+msgid "Cancel"
+msgstr "रद्द करें"
+
+#: .\dashboard\templates\dashboard\activity_add.html:258
+#: .\dashboard\templates\dashboard\activity_edit.html:87
+msgid "Back to Activity List"
+msgstr "गतिविधि सूची पर वापस जाएं"
+
+#: .\dashboard\templates\dashboard\activity_delete.html:12
+#: .\dashboard\templates\dashboard\activity_delete.html:81
+msgid "Delete Farming Activity"
+msgstr "कृषि गतिविधि हटाएं"
+
+#: .\dashboard\templates\dashboard\activity_delete.html:85
+msgid "Please confirm before deleting this activity."
+msgstr "इस गतिविधि को हटाने से पहले कृपया पुष्टि करें।"
+
+#: .\dashboard\templates\dashboard\activity_delete.html:101
+msgid "Are you sure you want to delete this activity?"
+msgstr "क्या आप वाकई इस गतिविधि को हटाना चाहते हैं?"
+
+#: .\dashboard\templates\dashboard\activity_delete.html:115
+#: .\dashboard\templates\dashboard\reports.html:580
+msgid "Activity"
+msgstr "गतिविधि"
+
+#: .\dashboard\templates\dashboard\activity_delete.html:121
+#: .\dashboard\templates\dashboard\activity_list.html:141
+#: .\dashboard\templates\dashboard\reports.html:584
+msgid "Date"
+msgstr "तारीख"
+
+#: .\dashboard\templates\dashboard\activity_delete.html:127
+#: .\dashboard\templates\dashboard\activity_edit.html:189
+msgid "Cost"
+msgstr "लागत"
+
+#: .\dashboard\templates\dashboard\activity_delete.html:145
+msgid "Yes, Delete"
+msgstr "हां, हटाएं"
+
+#: .\dashboard\templates\dashboard\activity_edit.html:12
+#: .\dashboard\templates\dashboard\activity_edit.html:76
+msgid "Edit Activity"
+msgstr "गतिविधि संपादित करें"
+
+#: .\dashboard\templates\dashboard\activity_edit.html:79
+msgid "Update farming activity details"
+msgstr "कृषि गतिविधि का विवरण अपडेट करें"
+
+#: .\dashboard\templates\dashboard\activity_edit.html:148
+msgid "Enter activity type"
+msgstr "गतिविधि का प्रकार दर्ज करें"
+
+#: .\dashboard\templates\dashboard\activity_edit.html:180
+msgid "Enter activity description"
+msgstr "गतिविधि का विवरण दर्ज करें"
+
+#: .\dashboard\templates\dashboard\activity_edit.html:198
+msgid "Enter cost"
+msgstr "लागत दर्ज करें"
+
+#: .\dashboard\templates\dashboard\activity_edit.html:210
+msgid "Update Activity"
+msgstr "गतिविधि अपडेट करें"
+
+
+# =========================
+# ACTIVITY LIST
+# =========================
+
+#: .\dashboard\templates\dashboard\activity_list.html:13
+#: .\dashboard\templates\dashboard\activity_list.html:94
+msgid "Activity Management"
+msgstr "गतिविधि प्रबंधन"
+
+#: .\dashboard\templates\dashboard\activity_list.html:98
+msgid "Manage farming activities performed on crops."
+msgstr "फसलों पर की जाने वाली कृषि गतिविधियों को प्रबंधित करें।"
+
+#: .\dashboard\templates\dashboard\activity_list.html:129
+#: .\dashboard\templates\dashboard\crop_list.html:148
+#: .\dashboard\templates\dashboard\crop_list.html:518
+#: .\dashboard\templates\dashboard\farm_list.html:95
+#: .\dashboard\templates\dashboard\farmer_list.html:254
+#: .\dashboard\templates\dashboard\harvest_list.html:116
+#: .\dashboard\templates\farmer_list.html:254
+msgid "ID"
+msgstr "क्रमांक"
+
+#: .\dashboard\templates\dashboard\activity_list.html:153
+#: .\dashboard\templates\dashboard\crop_list.html:164
+#: .\dashboard\templates\dashboard\crop_list.html:550
+#: .\dashboard\templates\dashboard\harvest_list.html:144
+msgid "Actions"
+msgstr "कार्यवाही"
+
+#: .\dashboard\templates\dashboard\activity_list.html:217
+#: .\dashboard\templates\dashboard\crop_list.html:229
+#: .\dashboard\templates\dashboard\crop_list.html:618
+#: .\dashboard\templates\dashboard\farm_list.html:154
+#: .\dashboard\templates\dashboard\farmer_list.html:333
+#: .\dashboard\templates\dashboard\harvest_list.html:191
+#: .\dashboard\templates\farmer_list.html:333
+msgid "Edit"
+msgstr "संपादित करें"
+
+#: .\dashboard\templates\dashboard\activity_list.html:225
+#: .\dashboard\templates\dashboard\crop_list.html:237
+#: .\dashboard\templates\dashboard\crop_list.html:626
+#: .\dashboard\templates\dashboard\farm_list.html:159
+#: .\dashboard\templates\dashboard\farmer_list.html:342
+#: .\dashboard\templates\dashboard\harvest_list.html:198
+#: .\dashboard\templates\farmer_list.html:342
+msgid "Delete"
+msgstr "हटाएं"
+
+#: .\dashboard\templates\dashboard\activity_list.html:253
+msgid "No Activities Found"
+msgstr "कोई गतिविधियां नहीं मिलीं"
+
+#: .\dashboard\templates\dashboard\activity_list.html:257
+msgid "No farming activities have been added yet."
+msgstr "अभी तक कोई कृषि गतिविधि नहीं जोड़ी गई है।"
+
+#: .\dashboard\templates\dashboard\activity_list.html:264
+msgid "Add First Activity"
+msgstr "पहली गतिविधि जोड़ें"
+
+#: .\dashboard\templates\dashboard\activity_list.html:283
+#: .\dashboard\templates\dashboard\crop_list.html:302
+#: .\dashboard\templates\dashboard\crop_list.html:694
+#: .\dashboard\templates\dashboard\farm_list.html:204
+#: .\dashboard\templates\dashboard\farmer_list.html:382
+#: .\dashboard\templates\dashboard\harvest_list.html:249
+#: .\dashboard\templates\farmer_list.html:382
+msgid "Back to Home"
+msgstr "मुख्यपृष्ठ पर वापस जाएं"
+
+
+# =========================
+# CROP
+# =========================
+
+#: .\dashboard\templates\dashboard\crop_add.html:13
+msgid "Add Crop"
+msgstr "फसल जोड़ें"
+
+#: .\dashboard\templates\dashboard\crop_add.html:132
+#: .\dashboard\templates\dashboard\crop_list.html:125
+#: .\dashboard\templates\dashboard\crop_list.html:283
+#: .\dashboard\templates\dashboard\crop_list.html:493
+#: .\dashboard\templates\dashboard\crop_list.html:672
+msgid "Add New Crop"
+msgstr "नई फसल जोड़ें"
+
+#: .\dashboard\templates\dashboard\crop_add.html:136
+msgid "Enter crop details to register a new crop."
+msgstr "नई फसल पंजीकृत करने के लिए फसल का विवरण दर्ज करें।"
+
+#: .\dashboard\templates\dashboard\crop_add.html:160
+#: .\dashboard\templates\dashboard\crop_delete.html:87
+#: .\dashboard\templates\dashboard\crop_edit.html:40
+#: .\dashboard\templates\dashboard\crop_list.html:152
+#: .\dashboard\templates\dashboard\crop_list.html:526
+msgid "Farm"
+msgstr "खेत"
+
+#: .\dashboard\templates\dashboard\crop_add.html:173
+msgid "Select Farm"
+msgstr "खेत चुनें"
+
+#: .\dashboard\templates\dashboard\crop_add.html:200
+#: .\dashboard\templates\dashboard\crop_delete.html:82
+#: .\dashboard\templates\dashboard\crop_edit.html:71
+#: .\dashboard\templates\dashboard\crop_list.html:150
+#: .\dashboard\templates\dashboard\crop_list.html:522
+msgid "Crop Name"
+msgstr "फसल का नाम"
+
+#: .\dashboard\templates\dashboard\crop_add.html:209
+msgid "Enter crop name"
+msgstr "फसल का नाम दर्ज करें"
+
+#: .\dashboard\templates\dashboard\crop_add.html:223
+#: .\dashboard\templates\dashboard\crop_delete.html:92
+#: .\dashboard\templates\dashboard\crop_edit.html:90
+#: .\dashboard\templates\dashboard\crop_list.html:156
+#: .\dashboard\templates\dashboard\crop_list.html:534
+msgid "Season"
+msgstr "मौसम"
+
+#: .\dashboard\templates\dashboard\crop_add.html:236
+msgid "Select Season"
+msgstr "मौसम चुनें"
+
+#: .\dashboard\templates\dashboard\crop_add.html:241
+msgid "Kharif"
+msgstr "खरीफ"
+
+#: .\dashboard\templates\dashboard\crop_add.html:245
+msgid "Rabi"
+msgstr "रबी"
+
+#: .\dashboard\templates\dashboard\crop_add.html:249
+msgid "Summer"
+msgstr "गर्मी"
+
+#: .\dashboard\templates\dashboard\crop_add.html:264
+#: .\dashboard\templates\dashboard\crop_edit.html:135
+#: .\dashboard\templates\dashboard\crop_list.html:158
+#: .\dashboard\templates\dashboard\crop_list.html:538
+msgid "Sowing Date"
+msgstr "बुवाई की तारीख"
+
+#: .\dashboard\templates\dashboard\crop_add.html:286
+#: .\dashboard\templates\dashboard\crop_edit.html:153
+msgid "Expected Harvest Date"
+msgstr "अपेक्षित कटाई की तारीख"
+
+#: .\dashboard\templates\dashboard\crop_add.html:308
+#: .\dashboard\templates\dashboard\crop_edit.html:171
+#: .\dashboard\templates\dashboard\crop_list.html:162
+#: .\dashboard\templates\dashboard\crop_list.html:546
+msgid "Area (Acres)"
+msgstr "क्षेत्रफल (एकड़)"
+
+#: .\dashboard\templates\dashboard\crop_add.html:317
+msgid "Enter area in acres"
+msgstr "क्षेत्रफल एकड़ में दर्ज करें"
+
+#: .\dashboard\templates\dashboard\crop_add.html:336
+msgid "Save Crop"
+msgstr "फसल सहेजें"
+
+#: .\dashboard\templates\dashboard\crop_add.html:346
+#: .\dashboard\templates\dashboard\crop_delete.html:119
+#: .\dashboard\templates\dashboard\crop_edit.html:24
+#: .\dashboard\templates\dashboard\crop_edit.html:214
+msgid "Back to Crop List"
+msgstr "फसल सूची पर वापस जाएं"
+
+#: .\dashboard\templates\dashboard\crop_delete.html:12
+#: .\dashboard\templates\dashboard\crop_delete.html:65
+msgid "Delete Crop"
+msgstr "फसल हटाएं"
+
+#: .\dashboard\templates\dashboard\crop_delete.html:68
+msgid "Are you sure you want to delete this crop?"
+msgstr "क्या आप वाकई इस फसल को हटाना चाहते हैं?"
+
+#: .\dashboard\templates\dashboard\crop_delete.html:79
+msgid "Delete Confirmation"
+msgstr "हटाने की पुष्टि"
+
+#: .\dashboard\templates\dashboard\crop_delete.html:102
+msgid "Yes, Delete Crop"
+msgstr "हां, फसल हटाएं"
+
+#: .\dashboard\templates\dashboard\crop_edit.html:16
+msgid "Edit Crop"
+msgstr "फसल संपादित करें"
+
+#: .\dashboard\templates\dashboard\crop_edit.html:19
+msgid "Update crop details"
+msgstr "फसल का विवरण अपडेट करें"
+
+#: .\dashboard\templates\dashboard\crop_edit.html:195
+msgid "Update Crop"
+msgstr "फसल अपडेट करें"
+
+#: .\dashboard\templates\dashboard\crop_list.html:113
+#: .\dashboard\templates\dashboard\crop_list.html:329
+#: .\dashboard\templates\dashboard\crop_list.html:479
+#: .\dashboard\templates\dashboard\home.html:295
+msgid "Crop Management"
+msgstr "फसल प्रबंधन"
+
+#: .\dashboard\templates\dashboard\crop_list.html:117
+#: .\dashboard\templates\dashboard\crop_list.html:483
+msgid "View and manage crops cultivated on registered farms."
+msgstr "पंजीकृत खेतों पर उगाई गई फसलों को देखें और प्रबंधित करें।"
+
+#: .\dashboard\templates\dashboard\crop_list.html:154
+#: .\dashboard\templates\dashboard\crop_list.html:530
+#: .\dashboard\templates\dashboard\farm_add.html:125
+#: .\dashboard\templates\dashboard\farm_edit.html:160
+#: .\dashboard\templates\dashboard\farm_list.html:99
+msgid "Farmer"
+msgstr "किसान"
+
+#: .\dashboard\templates\dashboard\crop_list.html:160
+#: .\dashboard\templates\dashboard\crop_list.html:542
+msgid "Expected Harvest"
+msgstr "अपेक्षित कटाई"
+
+#: .\dashboard\templates\dashboard\crop_list.html:270
+#: .\dashboard\templates\dashboard\crop_list.html:659
+msgid "No Crops Found"
+msgstr "कोई फसल नहीं मिली"
+
+#: .\dashboard\templates\dashboard\crop_list.html:275
+#: .\dashboard\templates\dashboard\crop_list.html:664
+msgid "There are currently no crops registered in the system."
+msgstr "वर्तमान में प्रणाली में कोई फसल पंजीकृत नहीं है।"
+
+
+# =========================
+# FARM
+# =========================
+
+#: .\dashboard\templates\dashboard\farm_add.html:12
+msgid "Add Farm"
+msgstr "खेत जोड़ें"
+
+#: .\dashboard\templates\dashboard\farm_add.html:105
+#: .\dashboard\templates\dashboard\farm_list.html:77
+#: .\dashboard\templates\dashboard\farm_list.html:191
+msgid "Add New Farm"
+msgstr "नया खेत जोड़ें"
+
+#: .\dashboard\templates\dashboard\farm_add.html:109
+msgid "Enter farm details to register a new farm."
+msgstr "नया खेत पंजीकृत करने के लिए खेत की जानकारी दर्ज करें।"
+
+#: .\dashboard\templates\dashboard\farm_add.html:135
+msgid "Select Farmer"
+msgstr "किसान चुनें"
+
+#: .\dashboard\templates\dashboard\farm_add.html:156
+#: .\dashboard\templates\dashboard\farm_edit.html:199
+#: .\dashboard\templates\dashboard\farm_list.html:97
+msgid "Farm Name"
+msgstr "खेत का नाम"
+
+#: .\dashboard\templates\dashboard\farm_add.html:163
+msgid "Enter farm name"
+msgstr "खेत का नाम दर्ज करें"
+
+#: .\dashboard\templates\dashboard\farm_add.html:175
+#: .\dashboard\templates\dashboard\farm_edit.html:222
+#: .\dashboard\templates\dashboard\farm_list.html:101
+#: .\dashboard\templates\dashboard\farmer_add.html:326
+#: .\dashboard\templates\dashboard\farmer_edit.html:210
+#: .\dashboard\templates\dashboard\farmer_list.html:278
+#: .\dashboard\templates\farmer_list.html:278
+msgid "Land Area (Acres)"
+msgstr "भूमि क्षेत्रफल (एकड़)"
+
+#: .\dashboard\templates\dashboard\farm_add.html:182
+#: .\dashboard\templates\dashboard\farmer_add.html:333
+msgid "Enter land area"
+msgstr "भूमि क्षेत्रफल दर्ज करें"
+
+#: .\dashboard\templates\dashboard\farm_add.html:196
+#: .\dashboard\templates\dashboard\farm_edit.html:247
+#: .\dashboard\templates\dashboard\farm_list.html:103
+msgid "Soil Type"
+msgstr "मिट्टी का प्रकार"
+
+#: .\dashboard\templates\dashboard\farm_add.html:203
+msgid "Example: Black Soil"
+msgstr "उदाहरण: काली मिट्टी"
+
+#: .\dashboard\templates\dashboard\farm_add.html:215
+#: .\dashboard\templates\dashboard\farm_edit.html:270
+#: .\dashboard\templates\dashboard\farm_list.html:105
+msgid "Irrigation Type"
+msgstr "सिंचाई का प्रकार"
+
+#: .\dashboard\templates\dashboard\farm_add.html:222
+msgid "Example: Drip / Sprinkler"
+msgstr "उदाहरण: ड्रिप / स्प्रिंकलर"
+
+#: .\dashboard\templates\dashboard\farm_add.html:234
+#: .\dashboard\templates\dashboard\farm_edit.html:293
+#: .\dashboard\templates\dashboard\farm_list.html:107
+#: .\dashboard\templates\dashboard\farmer_add.html:269
+#: .\dashboard\templates\dashboard\farmer_edit.html:159
+#: .\dashboard\templates\dashboard\farmer_list.html:266
+#: .\dashboard\templates\farmer_list.html:266
+msgid "Village"
+msgstr "गांव"
+
+#: .\dashboard\templates\dashboard\farm_add.html:241
+msgid "Enter village name"
+msgstr "गांव का नाम दर्ज करें"
+
+#: .\dashboard\templates\dashboard\farm_add.html:256
+msgid "Save Farm"
+msgstr "खेत सहेजें"
+
+#: .\dashboard\templates\dashboard\farm_add.html:264
+#: .\dashboard\templates\dashboard\farm_edit.html:329
+msgid "Back to Farm List"
+msgstr "खेत की सूची पर वापस जाएं"
+
+#: .\dashboard\templates\dashboard\farm_delete.html:13
+#: .\dashboard\templates\dashboard\farm_delete.html:208
+msgid "Delete Farm"
+msgstr "खेत हटाएं"
+
+#: .\dashboard\templates\dashboard\farm_delete.html:213
+msgid "Are you sure you want to delete this farm?"
+msgstr "क्या आप वाकई इस खेत को हटाना चाहते हैं?"
+
+#: .\dashboard\templates\dashboard\farm_delete.html:223
+msgid "This action cannot be undone."
+msgstr "यह कार्रवाई पूर्ववत नहीं की जा सकती।"
+
+#: .\dashboard\templates\dashboard\farm_delete.html:239
+msgid "Yes, Delete Farm"
+msgstr "हां, खेत हटाएं"
+
+#: .\dashboard\templates\dashboard\farm_edit.html:13
+#: .\dashboard\templates\dashboard\farm_edit.html:132
+msgid "Edit Farm"
+msgstr "खेत संपादित करें"
+
+#: .\dashboard\templates\dashboard\farm_edit.html:136
+msgid "Update farm details below."
+msgstr "नीचे खेत का विवरण अपडेट करें।"
+
+#: .\dashboard\templates\dashboard\farm_edit.html:319
+msgid "Update Farm"
+msgstr "खेत अपडेट करें"
+
+#: .\dashboard\templates\dashboard\farm_list.html:67
+#: .\dashboard\templates\dashboard\home.html:227
+#: .\dashboard\templates\dashboard\home.html:269
+msgid "Farm Management"
+msgstr "खेत प्रबंधन"
+
+#: .\dashboard\templates\dashboard\farm_list.html:71
+msgid "View and manage registered farms."
+msgstr "पंजीकृत खेतों को देखें और प्रबंधित करें।"
+
+#: .\dashboard\templates\dashboard\farm_list.html:109
+#: .\dashboard\templates\dashboard\farmer_list.html:282
+#: .\dashboard\templates\farmer_list.html:282
+msgid "Action"
+msgstr "कार्यवाही"
+
+#: .\dashboard\templates\dashboard\farm_list.html:183
+msgid "No Farms Found"
+msgstr "कोई खेत नहीं मिला"
+
+#: .\dashboard\templates\dashboard\farm_list.html:187
+msgid "There are currently no farms registered in the system."
+msgstr "वर्तमान में प्रणाली में कोई खेत पंजीकृत नहीं है।"
+
+
+# =========================
+# FARMER
+# =========================
+
+#: .\dashboard\templates\dashboard\farmer_add.html:12
+#: .\dashboard\templates\dashboard\farmer_list.html:236
+#: .\dashboard\templates\farmer_list.html:236
+msgid "Add Farmer"
+msgstr "किसान जोड़ें"
+
+#: .\dashboard\templates\dashboard\farmer_add.html:207
+msgid "Add New Farmer"
+msgstr "नया किसान जोड़ें"
+
+#: .\dashboard\templates\dashboard\farmer_add.html:211
+msgid "Enter farmer details below."
+msgstr "नीचे किसान की जानकारी दर्ज करें।"
+
+#: .\dashboard\templates\dashboard\farmer_add.html:229
+#: .\dashboard\templates\dashboard\farmer_edit.html:125
+msgid "Farmer Name"
+msgstr "किसान का नाम"
+
+#: .\dashboard\templates\dashboard\farmer_add.html:236
+msgid "Enter farmer name"
+msgstr "किसान का नाम दर्ज करें"
+
+#: .\dashboard\templates\dashboard\farmer_add.html:248
+msgid "Mobile Number"
+msgstr "मोबाइल नंबर"
+
+#: .\dashboard\templates\dashboard\farmer_add.html:255
+msgid "Enter mobile number"
+msgstr "मोबाइल नंबर दर्ज करें"
+
+#: .\dashboard\templates\dashboard\farmer_add.html:276
+msgid "Enter village"
+msgstr "गांव का नाम दर्ज करें"
+
+#: .\dashboard\templates\dashboard\farmer_add.html:286
+#: .\dashboard\templates\dashboard\farmer_edit.html:176
+#: .\dashboard\templates\dashboard\farmer_list.html:270
+#: .\dashboard\templates\farmer_list.html:270
+msgid "Taluka"
+msgstr "तालुका"
+
+#: .\dashboard\templates\dashboard\farmer_add.html:293
+msgid "Enter taluka"
+msgstr "तालुका का नाम दर्ज करें"
+
+#: .\dashboard\templates\dashboard\farmer_add.html:309
+#: .\dashboard\templates\dashboard\farmer_edit.html:193
+#: .\dashboard\templates\dashboard\farmer_list.html:274
+#: .\dashboard\templates\farmer_list.html:274
+msgid "District"
+msgstr "जिला"
+
+#: .\dashboard\templates\dashboard\farmer_add.html:316
+msgid "Enter district"
+msgstr "जिले का नाम दर्ज करें"
+
+#: .\dashboard\templates\dashboard\farmer_add.html:350
+msgid "Save Farmer"
+msgstr "किसान सहेजें"
+
+#: .\dashboard\templates\dashboard\farmer_add.html:358
+#: .\dashboard\templates\dashboard\farmer_edit.html:233
+msgid "Back to Farmer List"
+msgstr "किसान सूची पर वापस जाएं"
+
+#: .\dashboard\templates\dashboard\farmer_edit.html:11
+#: .\dashboard\templates\dashboard\farmer_edit.html:104
+msgid "Edit Farmer"
+msgstr "किसान संपादित करें"
+
+#: .\dashboard\templates\dashboard\farmer_edit.html:108
+msgid "Update farmer details."
+msgstr "किसान की जानकारी अपडेट करें।"
+
+#: .\dashboard\templates\dashboard\farmer_edit.html:142
+#: .\dashboard\templates\dashboard\farmer_list.html:262
+#: .\dashboard\templates\farmer_list.html:262
+msgid "Mobile"
+msgstr "मोबाइल"
+
+#: .\dashboard\templates\dashboard\farmer_edit.html:229
+msgid "Update Farmer"
+msgstr "किसान अपडेट करें"
+
+#: .\dashboard\templates\dashboard\farmer_edit.html:249
+#: .\dashboard\templates\dashboard\reports.html:836
+msgid "Agriculture Management System"
+msgstr "कृषि प्रबंधन प्रणाली"
+
+#: .\dashboard\templates\dashboard\farmer_list.html:17
+#: .\dashboard\templates\dashboard\farmer_list.html:223
+#: .\dashboard\templates\dashboard\home.html:243
+#: .\dashboard\templates\farmer_list.html:17
+#: .\dashboard\templates\farmer_list.html:223
+msgid "Farmer Management"
+msgstr "किसान प्रबंधन"
+
+#: .\dashboard\templates\dashboard\farmer_list.html:227
+#: .\dashboard\templates\farmer_list.html:227
+msgid "View and manage registered farmers."
+msgstr "पंजीकृत किसानों को देखें और प्रबंधित करें।"
+
+#: .\dashboard\templates\dashboard\farmer_list.html:258
+#: .\dashboard\templates\farmer_list.html:258
+msgid "Name"
+msgstr "नाम"
+
+#: .\dashboard\templates\dashboard\farmer_list.html:360
+#: .\dashboard\templates\farmer_list.html:360
+msgid "No farmers registered yet."
+msgstr "अभी तक कोई किसान पंजीकृत नहीं है।"
+
+
+# =========================
+# HARVEST
+# =========================
+
+#: .\dashboard\templates\dashboard\harvest_delete.html:12
+#: .\dashboard\templates\dashboard\harvest_delete.html:76
+msgid "Delete Harvest"
+msgstr "कटाई हटाएं"
+
+#: .\dashboard\templates\dashboard\harvest_delete.html:80
+msgid "Please confirm before deleting this harvest record."
+msgstr "इस कटाई रिकॉर्ड को हटाने से पहले कृपया पुष्टि करें।"
+
+#: .\dashboard\templates\dashboard\harvest_delete.html:94
+msgid "Are you sure you want to delete this harvest?"
+msgstr "क्या आप वाकई इस कटाई को हटाना चाहते हैं?"
+
+#: .\dashboard\templates\dashboard\harvest_delete.html:113
+#: .\dashboard\templates\dashboard\harvest_list.html:124
+#: .\dashboard\templates\dashboard\reports.html:676
+msgid "Harvest Date"
+msgstr "कटाई की तारीख"
+
+#: .\dashboard\templates\dashboard\harvest_delete.html:123
+#: .\dashboard\templates\dashboard\harvest_list.html:128
+#: .\dashboard\templates\dashboard\reports.html:680
+msgid "Quantity"
+msgstr "मात्रा"
+
+#: .\dashboard\templates\dashboard\harvest_delete.html:135
+#: .\dashboard\templates\dashboard\harvest_list.html:136
+#: .\dashboard\templates\dashboard\reports.html:688
+msgid "Quality"
+msgstr "गुणवत्ता"
+
+#: .\dashboard\templates\dashboard\harvest_delete.html:149
+#: .\dashboard\templates\dashboard\harvest_list.html:140
+#: .\dashboard\templates\dashboard\reports.html:692
+msgid "Notes"
+msgstr "टिप्पणियां"
+
+#: .\dashboard\templates\dashboard\harvest_delete.html:171
+msgid "Yes, Delete Harvest"
+msgstr "हां, कटाई हटाएं"
+
+#: .\dashboard\templates\dashboard\harvest_list.html:12
+#: .\dashboard\templates\dashboard\harvest_list.html:81
+#: .\dashboard\templates\dashboard\home.html:347
+msgid "Harvest Management"
+msgstr "कटाई प्रबंधन"
+
+#: .\dashboard\templates\dashboard\harvest_list.html:85
+msgid "Manage your crop harvest records"
+msgstr "अपनी फसल की कटाई के रिकॉर्ड को प्रबंधित करें।"
+
+#: .\dashboard\templates\dashboard\harvest_list.html:93
+#: .\dashboard\templates\dashboard\harvest_list.html:231
+msgid "Add New Harvest"
+msgstr "नई कटाई जोड़ें"
+
+#: .\dashboard\templates\dashboard\harvest_list.html:132
+#: .\dashboard\templates\dashboard\reports.html:684
+msgid "Unit"
+msgstr "इकाई"
+
+#: .\dashboard\templates\dashboard\harvest_list.html:221
+msgid "No Harvest Records Found"
+msgstr "कोई कटाई रिकॉर्ड नहीं मिला"
+
+#: .\dashboard\templates\dashboard\harvest_list.html:225
+msgid "No harvest records have been added yet."
+msgstr "अभी तक कोई कटाई रिकॉर्ड नहीं जोड़ा गया है।"
+
+
+# =========================
+# HOME
+# =========================
+
+#: .\dashboard\templates\dashboard\home.html:96
+msgid "Welcome to ShetiMitra"
+msgstr "शेतीमित्र में आपका स्वागत है"
+
+#: .\dashboard\templates\dashboard\home.html:100
+msgid ""
+"Manage your farming activities, crops, farms, harvests and weather "
+"information in one place."
+msgstr ""
+"अपनी कृषि गतिविधियों, फसलों, खेतों, कटाई और मौसम की जानकारी को एक ही स्थान पर "
+"प्रबंधित करें।"
+
+#: .\dashboard\templates\dashboard\home.html:111
+msgid "Current Weather"
+msgstr "वर्तमान मौसम"
+
+#: .\dashboard\templates\dashboard\home.html:129
+msgid "Temperature"
+msgstr "तापमान"
+
+#: .\dashboard\templates\dashboard\home.html:152
+msgid "Humidity"
+msgstr "आर्द्रता"
+
+#: .\dashboard\templates\dashboard\home.html:175
+msgid "Wind Speed"
+msgstr "हवा की गति"
+
+#: .\dashboard\templates\dashboard\home.html:198
+msgid "Weather Status"
+msgstr "मौसम की स्थिति"
+
+#: .\dashboard\templates\dashboard\home.html:214
+msgid "Last Updated"
+msgstr "अंतिम अपडेट"
+
+#: .\dashboard\templates\dashboard\home.html:247
+msgid "Manage farmer information and details."
+msgstr "किसान की जानकारी और विवरण प्रबंधित करें।"
+
+#: .\dashboard\templates\dashboard\home.html:254
+msgid "Manage Farmers"
+msgstr "किसानों को प्रबंधित करें"
+
+#: .\dashboard\templates\dashboard\home.html:273
+msgid "Manage farms, land and irrigation information."
+msgstr "खेत, भूमि और सिंचाई की जानकारी प्रबंधित करें।"
+
+#: .\dashboard\templates\dashboard\home.html:280
+msgid "Manage Farms"
+msgstr "खेत प्रबंधित करें"
+
+#: .\dashboard\templates\dashboard\home.html:299
+msgid "Manage crops, seasons and cultivation details."
+msgstr "फसलों, मौसम और खेती के विवरण को प्रबंधित करें।"
+
+#: .\dashboard\templates\dashboard\home.html:306
+msgid "Manage Crops"
+msgstr "फसलों को प्रबंधित करें"
+
+#: .\dashboard\templates\dashboard\home.html:321
+msgid "Farming Activities"
+msgstr "कृषि गतिविधियां"
+
+#: .\dashboard\templates\dashboard\home.html:325
+msgid "Manage farming activities, dates and expenses."
+msgstr "कृषि गतिविधियों, तारीखों और खर्चों को प्रबंधित करें।"
+
+#: .\dashboard\templates\dashboard\home.html:332
+msgid "Manage Activities"
+msgstr "गतिविधियों को प्रबंधित करें"
+
+#: .\dashboard\templates\dashboard\home.html:351
+msgid "Manage harvest quantity, quality and dates."
+msgstr "कटाई की मात्रा, गुणवत्ता और तारीखों को प्रबंधित करें।"
+
+#: .\dashboard\templates\dashboard\home.html:358
+msgid "Manage Harvests"
+msgstr "कटाई प्रबंधित करें"
+
+#: .\dashboard\templates\dashboard\home.html:377
+msgid "View agriculture reports and farming records."
+msgstr "कृषि रिपोर्ट और खेती के रिकॉर्ड देखें।"
+
+#: .\dashboard\templates\dashboard\home.html:384
+msgid "View Reports"
+msgstr "रिपोर्ट देखें"
+
+#: .\dashboard\templates\dashboard\home.html:198
+msgid "Drizzle 🌦️"
+msgstr "बूंदाबांदी 🌦️"
+
+#: .\dashboard\templates\dashboard\home.html:198
+msgid "Rain 🌧️"
+msgstr "बारिश 🌧️"
+
+#: .\dashboard\templates\dashboard\home.html:198
+msgid "Clear ☀️"
+msgstr "साफ मौसम ☀️"
+
+#: .\dashboard\templates\dashboard\home.html:198
+msgid "Cloudy ☁️"
+msgstr "बादल छाए हुए ☁️"
+
+#: .\dashboard\templates\dashboard\home.html:198
+msgid "Partly Cloudy ⛅"
+msgstr "आंशिक रूप से बादल छाए हुए ⛅"
+
+
+# =========================
+# REPORTS
+# =========================
+
+#: .\dashboard\templates\dashboard\reports.html:435
+msgid "Agriculture Reports"
+msgstr "कृषि रिपोर्ट"
+
+#: .\dashboard\templates\dashboard\reports.html:439
+msgid "View summary and detailed reports of your farming activities."
+msgstr "अपनी कृषि गतिविधियों की संक्षिप्त और विस्तृत रिपोर्ट देखें।"
+
+#: .\dashboard\templates\dashboard\reports.html:448
+msgid "Print Report"
+msgstr "रिपोर्ट प्रिंट करें"
+
+#: .\dashboard\templates\dashboard\reports.html:467
+msgid "Total Farmers"
+msgstr "कुल किसान"
+
+#: .\dashboard\templates\dashboard\reports.html:482
+msgid "Total Farms"
+msgstr "कुल खेत"
+
+#: .\dashboard\templates\dashboard\reports.html:497
+msgid "Total Crops"
+msgstr "कुल फसलें"
+
+#: .\dashboard\templates\dashboard\reports.html:512
+msgid "Total Activities"
+msgstr "कुल गतिविधियां"
+
+#: .\dashboard\templates\dashboard\reports.html:527
+msgid "Total Harvests"
+msgstr "कुल कटाई"
+
+#: .\dashboard\templates\dashboard\reports.html:542
+msgid "Activity Cost"
+msgstr "गतिविधि लागत"
+
+#: .\dashboard\templates\dashboard\reports.html:561
+msgid "Farming Activity Report"
+msgstr "कृषि गतिविधि रिपोर्ट"
+
+#: .\dashboard\templates\dashboard\reports.html:641
+msgid "No activity records available."
+msgstr "कोई गतिविधि रिकॉर्ड उपलब्ध नहीं है।"
+
+#: .\dashboard\templates\dashboard\reports.html:657
+msgid "Harvest Report"
+msgstr "कटाई रिपोर्ट"
+
+#: .\dashboard\templates\dashboard\reports.html:745
+msgid "No harvest records available."
+msgstr "कोई कटाई रिकॉर्ड उपलब्ध नहीं है।"
+
+#: .\dashboard\templates\dashboard\reports.html:761
+msgid "Crop-wise Activity Cost"
+msgstr "फसल के अनुसार गतिविधि लागत"
+
+#: .\dashboard\templates\dashboard\reports.html:780
+msgid "Total Activity Cost (₹)"
+msgstr "कुल गतिविधि लागत (₹)"
+
+#: .\dashboard\templates\dashboard\reports.html:817
+msgid "No crop cost records available."
+msgstr "फसल लागत का कोई रिकॉर्ड उपलब्ध नहीं है।"
+
+
+# =========================
+# LOGIN
+# =========================
+
+msgid "Login"
+msgstr "लॉगिन"
+
+msgid "Username"
+msgstr "उपयोगकर्ता नाम"
+
+msgid "Password"
+msgstr "पासवर्ड"
+
+msgid "Enter username"
+msgstr "उपयोगकर्ता नाम दर्ज करें"
+
+msgid "Enter password"
+msgstr "पासवर्ड दर्ज करें"
+
+msgid "Username or password is incorrect."
+msgstr "उपयोगकर्ता नाम या पासवर्ड गलत है।"

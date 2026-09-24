@@ -1,0 +1,629 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ShetiMitra 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-17 22:20+0530\n"
+"Language: mr\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+
+# =========================
+# HOME / COMMON
+# =========================
+
+msgid "Smart Agriculture Management System"
+msgstr "स्मार्ट कृषी व्यवस्थापन प्रणाली"
+
+msgid "ShetiMitra – Smart Agriculture Management System"
+msgstr "शेतीमित्र – स्मार्ट कृषी व्यवस्थापन प्रणाली"
+
+msgid "Home"
+msgstr "मुख्यपृष्ठ"
+
+msgid "Farmers"
+msgstr "शेतकरी"
+
+msgid "Farms"
+msgstr "शेत"
+
+msgid "Crops"
+msgstr "पिके"
+
+msgid "Activities"
+msgstr "क्रियाकलाप"
+
+msgid "Harvests"
+msgstr "कापणी"
+
+msgid "Reports"
+msgstr "अहवाल"
+
+msgid "ID"
+msgstr "क्रमांक"
+
+msgid "Actions"
+msgstr "कृती"
+
+msgid "Action"
+msgstr "कृती"
+
+msgid "Edit"
+msgstr "संपादित करा"
+
+msgid "Delete"
+msgstr "हटवा"
+
+msgid "Cancel"
+msgstr "रद्द करा"
+
+msgid "Back to Home"
+msgstr "मुख्यपृष्ठावर परत जा"
+
+
+# =========================
+# FARMER
+# =========================
+
+msgid "Add Farmer"
+msgstr "शेतकरी जोडा"
+
+msgid "Add New Farmer"
+msgstr "नवीन शेतकरी जोडा"
+
+msgid "Enter farmer details below."
+msgstr "खाली शेतकऱ्याची माहिती भरा."
+
+msgid "Farmer Name"
+msgstr "शेतकऱ्याचे नाव"
+
+msgid "Enter farmer name"
+msgstr "शेतकऱ्याचे नाव टाका"
+
+msgid "Mobile Number"
+msgstr "मोबाईल नंबर"
+
+msgid "Enter mobile number"
+msgstr "मोबाईल नंबर टाका"
+
+msgid "Village"
+msgstr "गाव"
+
+msgid "Enter village"
+msgstr "गावाचे नाव टाका"
+
+msgid "Taluka"
+msgstr "तालुका"
+
+msgid "Enter taluka"
+msgstr "तालुक्याचे नाव टाका"
+
+msgid "District"
+msgstr "जिल्हा"
+
+msgid "Enter district"
+msgstr "जिल्ह्याचे नाव टाका"
+
+msgid "Land Area (Acres)"
+msgstr "जमिनीचे क्षेत्रफळ (एकर)"
+
+msgid "Enter land area"
+msgstr "जमिनीचे क्षेत्रफळ टाका"
+
+msgid "Save Farmer"
+msgstr "शेतकरी जतन करा"
+
+msgid "Back to Farmer List"
+msgstr "शेतकरी यादीकडे परत जा"
+
+msgid "Farmer Management"
+msgstr "शेतकरी व्यवस्थापन"
+
+msgid "View and manage registered farmers."
+msgstr "नोंदणीकृत शेतकऱ्यांना पहा आणि व्यवस्थापित करा."
+
+msgid "Name"
+msgstr "नाव"
+
+msgid "Mobile"
+msgstr "मोबाईल"
+
+msgid "No farmers registered yet."
+msgstr "अद्याप कोणतेही शेतकरी नोंदणीकृत नाहीत."
+
+msgid "Edit Farmer"
+msgstr "शेतकरी संपादित करा"
+
+msgid "Update farmer details."
+msgstr "शेतकऱ्याची माहिती अद्यतनित करा."
+
+msgid "Update Farmer"
+msgstr "शेतकरी अद्यतनित करा"
+
+msgid "Agriculture Management System"
+msgstr "कृषी व्यवस्थापन प्रणाली"
+
+
+# =========================
+# FARM
+# =========================
+
+msgid "Add Farm"
+msgstr "शेत जोडा"
+
+msgid "Add New Farm"
+msgstr "नवीन शेत जोडा"
+
+msgid "Enter farm details to register a new farm."
+msgstr "नवीन शेत नोंदणी करण्यासाठी शेताची माहिती भरा."
+
+msgid "Select Farmer"
+msgstr "शेतकरी निवडा"
+
+msgid "Farmer"
+msgstr "शेतकरी"
+
+msgid "Farm"
+msgstr "शेत"
+
+msgid "Farm Name"
+msgstr "शेताचे नाव"
+
+msgid "Enter farm name"
+msgstr "शेताचे नाव टाका"
+
+msgid "Soil Type"
+msgstr "मातीचा प्रकार"
+
+msgid "Example: Black Soil"
+msgstr "उदाहरण: काळी माती"
+
+msgid "Irrigation Type"
+msgstr "सिंचनाचा प्रकार"
+
+msgid "Example: Drip / Sprinkler"
+msgstr "उदाहरण: ठिबक / तुषार"
+
+msgid "Save Farm"
+msgstr "शेत जतन करा"
+
+msgid "Back to Farm List"
+msgstr "शेताच्या यादीकडे परत जा"
+
+msgid "Delete Farm"
+msgstr "शेत हटवा"
+
+msgid "Are you sure you want to delete this farm?"
+msgstr "तुम्हाला हे शेत हटवायचे आहे का?"
+
+msgid "This action cannot be undone."
+msgstr "ही कृती पूर्ववत करता येणार नाही."
+
+msgid "Yes, Delete Farm"
+msgstr "होय, शेत हटवा"
+
+msgid "Edit Farm"
+msgstr "शेत संपादित करा"
+
+msgid "Update farm details below."
+msgstr "शेताची माहिती खाली अद्यतनित करा."
+
+msgid "Update Farm"
+msgstr "शेत अद्यतनित करा"
+
+msgid "Farm Management"
+msgstr "शेत व्यवस्थापन"
+
+msgid "View and manage registered farms."
+msgstr "नोंदणीकृत शेत पहा आणि व्यवस्थापित करा."
+
+msgid "No Farms Found"
+msgstr "कोणतेही शेत सापडले नाही"
+
+msgid "There are currently no farms registered in the system."
+msgstr "सध्या प्रणालीमध्ये कोणतेही शेत नोंदणीकृत नाही."
+
+
+# =========================
+# CROP
+# =========================
+
+msgid "Add Crop"
+msgstr "पीक जोडा"
+
+msgid "Add New Crop"
+msgstr "नवीन पीक जोडा"
+
+msgid "Enter crop details to register a new crop."
+msgstr "नवीन पीक नोंदणी करण्यासाठी पिकाची माहिती भरा."
+
+msgid "Select Farm"
+msgstr "शेत निवडा"
+
+msgid "Crop Name"
+msgstr "पिकाचे नाव"
+
+msgid "Enter crop name"
+msgstr "पिकाचे नाव टाका"
+
+msgid "Season"
+msgstr "हंगाम"
+
+msgid "Select Season"
+msgstr "हंगाम निवडा"
+
+msgid "Kharif"
+msgstr "खरीप"
+
+msgid "Rabi"
+msgstr "रब्बी"
+
+msgid "Summer"
+msgstr "उन्हाळी"
+
+msgid "Sowing Date"
+msgstr "पेरणीची तारीख"
+
+msgid "Expected Harvest"
+msgstr "अपेक्षित कापणी"
+
+msgid "Expected Harvest Date"
+msgstr "अपेक्षित कापणीची तारीख"
+
+msgid "Area (Acres)"
+msgstr "क्षेत्रफळ (एकर)"
+
+msgid "Enter area in acres"
+msgstr "एकरमध्ये क्षेत्रफळ टाका"
+
+msgid "Save Crop"
+msgstr "पीक जतन करा"
+
+msgid "Back to Crop List"
+msgstr "पीक यादीकडे परत जा"
+
+msgid "Delete Crop"
+msgstr "पीक हटवा"
+
+msgid "Are you sure you want to delete this crop?"
+msgstr "तुम्हाला हे पीक हटवायचे आहे का?"
+
+msgid "Delete Confirmation"
+msgstr "हटवण्याची पुष्टी"
+
+msgid "Yes, Delete Crop"
+msgstr "होय, पीक हटवा"
+
+msgid "Edit Crop"
+msgstr "पीक संपादित करा"
+
+msgid "Update crop details"
+msgstr "पिकाची माहिती अद्यतनित करा"
+
+msgid "Update Crop"
+msgstr "पीक अद्यतनित करा"
+
+msgid "Crop Management"
+msgstr "पीक व्यवस्थापन"
+
+msgid "View and manage crops cultivated on registered farms."
+msgstr "नोंदणीकृत शेतांवर लागवड केलेली पिके पहा आणि व्यवस्थापित करा."
+
+msgid "No Crops Found"
+msgstr "कोणतीही पिके सापडली नाहीत"
+
+msgid "There are currently no crops registered in the system."
+msgstr "सध्या प्रणालीमध्ये कोणतीही पिके नोंदणीकृत नाहीत."
+
+
+# =========================
+# ACTIVITY
+# =========================
+
+msgid "Add Activity"
+msgstr "क्रियाकलाप जोडा"
+
+msgid "Add Farming Activity"
+msgstr "शेतीचा क्रियाकलाप जोडा"
+
+msgid "Add an activity performed on a crop."
+msgstr "पिकावर केलेला क्रियाकलाप जोडा."
+
+msgid "Select Crop"
+msgstr "पीक निवडा"
+
+msgid "Activity Type"
+msgstr "क्रियाकलापाचा प्रकार"
+
+msgid "Example: Fertilizer, Spraying, Weeding"
+msgstr "उदाहरण: खत, फवारणी, तण काढणे"
+
+msgid "Activity Date"
+msgstr "क्रियाकलापाची तारीख"
+
+msgid "Description"
+msgstr "वर्णन"
+
+msgid "Enter activity details..."
+msgstr "क्रियाकलापाचा तपशील टाका..."
+
+msgid "Cost (₹)"
+msgstr "खर्च (₹)"
+
+msgid "Enter activity cost"
+msgstr "क्रियाकलापाचा खर्च टाका"
+
+msgid "Save Activity"
+msgstr "क्रियाकलाप जतन करा"
+
+msgid "Back to Activity List"
+msgstr "क्रियाकलाप यादीकडे परत जा"
+
+msgid "Delete Farming Activity"
+msgstr "शेतीचा क्रियाकलाप हटवा"
+
+msgid "Please confirm before deleting this activity."
+msgstr "हा क्रियाकलाप हटवण्यापूर्वी कृपया पुष्टी करा."
+
+msgid "Are you sure you want to delete this activity?"
+msgstr "तुम्हाला हा क्रियाकलाप हटवायचा आहे का?"
+
+msgid "Activity"
+msgstr "क्रियाकलाप"
+
+msgid "Crop"
+msgstr "पीक"
+
+msgid "Date"
+msgstr "तारीख"
+
+msgid "Cost"
+msgstr "खर्च"
+
+msgid "Yes, Delete"
+msgstr "होय, हटवा"
+
+msgid "Edit Activity"
+msgstr "क्रियाकलाप संपादित करा"
+
+msgid "Update farming activity details"
+msgstr "शेतीच्या क्रियाकलापाची माहिती अद्यतनित करा"
+
+msgid "Enter activity type"
+msgstr "क्रियाकलापाचा प्रकार टाका"
+
+msgid "Enter activity description"
+msgstr "क्रियाकलापाचे वर्णन टाका"
+
+msgid "Enter cost"
+msgstr "खर्च टाका"
+
+msgid "Update Activity"
+msgstr "क्रियाकलाप अद्यतनित करा"
+
+msgid "Activity Management"
+msgstr "क्रियाकलाप व्यवस्थापन"
+
+msgid "Manage farming activities performed on crops."
+msgstr "पिकांवर केलेल्या शेतीच्या क्रियाकलापांचे व्यवस्थापन करा."
+
+msgid "No Activities Found"
+msgstr "कोणतेही क्रियाकलाप सापडले नाहीत"
+
+msgid "No farming activities have been added yet."
+msgstr "अद्याप कोणतेही शेतीचे क्रियाकलाप जोडलेले नाहीत."
+
+msgid "Add First Activity"
+msgstr "पहिला क्रियाकलाप जोडा"
+
+
+# =========================
+# HARVEST
+# =========================
+
+msgid "Delete Harvest"
+msgstr "कापणी हटवा"
+
+msgid "Please confirm before deleting this harvest record."
+msgstr "ही कापणी नोंद हटवण्यापूर्वी कृपया पुष्टी करा."
+
+msgid "Are you sure you want to delete this harvest?"
+msgstr "तुम्हाला ही कापणी हटवायची आहे का?"
+
+msgid "Harvest Date"
+msgstr "कापणीची तारीख"
+
+msgid "Quantity"
+msgstr "मात्रा"
+
+msgid "Quality"
+msgstr "गुणवत्ता"
+
+msgid "Notes"
+msgstr "नोंदी"
+
+msgid "Yes, Delete Harvest"
+msgstr "होय, कापणी हटवा"
+
+msgid "Harvest Management"
+msgstr "कापणी व्यवस्थापन"
+
+msgid "Manage your crop harvest records"
+msgstr "तुमच्या पिकांच्या कापणीच्या नोंदी व्यवस्थापित करा"
+
+msgid "Add New Harvest"
+msgstr "नवीन कापणी जोडा"
+
+msgid "Unit"
+msgstr "एकक"
+
+msgid "No Harvest Records Found"
+msgstr "कापणीच्या कोणत्याही नोंदी सापडल्या नाहीत"
+
+msgid "No harvest records have been added yet."
+msgstr "अद्याप कोणत्याही कापणीच्या नोंदी जोडलेल्या नाहीत."
+
+
+# =========================
+# HOME PAGE
+# =========================
+
+msgid "Welcome to ShetiMitra"
+msgstr "शेतीमित्रमध्ये स्वागत आहे"
+
+msgid ""
+"Manage your farming activities, crops, farms, harvests and weather "
+"information in one place."
+msgstr ""
+"तुमच्या शेतीच्या क्रियाकलाप, पिके, शेत, कापणी आणि हवामानाची माहिती "
+"एकाच ठिकाणी व्यवस्थापित करा."
+
+msgid "Current Weather"
+msgstr "सध्याचे हवामान"
+
+msgid "Temperature"
+msgstr "तापमान"
+
+msgid "Humidity"
+msgstr "आर्द्रता"
+
+msgid "Wind Speed"
+msgstr "वाऱ्याचा वेग"
+
+msgid "Weather Status"
+msgstr "हवामानाची स्थिती"
+
+msgid "Last Updated"
+msgstr "शेवटचे अपडेट"
+
+msgid "Manage farmer information and details."
+msgstr "शेतकऱ्याची माहिती आणि तपशील व्यवस्थापित करा."
+
+msgid "Manage Farmers"
+msgstr "शेतकरी व्यवस्थापित करा"
+
+msgid "Manage farms, land and irrigation information."
+msgstr "शेत, जमीन आणि सिंचनाची माहिती व्यवस्थापित करा."
+
+msgid "Manage Farms"
+msgstr "शेत व्यवस्थापित करा"
+
+msgid "Manage crops, seasons and cultivation details."
+msgstr "पिके, हंगाम आणि लागवडीचे तपशील व्यवस्थापित करा."
+
+msgid "Manage Crops"
+msgstr "पिके व्यवस्थापित करा"
+
+msgid "Farming Activities"
+msgstr "शेतीचे क्रियाकलाप"
+
+msgid "Manage farming activities, dates and expenses."
+msgstr "शेतीचे क्रियाकलाप, तारखा आणि खर्च व्यवस्थापित करा."
+
+msgid "Manage Activities"
+msgstr "क्रियाकलाप व्यवस्थापित करा"
+
+msgid "Manage harvest quantity, quality and dates."
+msgstr "कापणीची मात्रा, गुणवत्ता आणि तारखा व्यवस्थापित करा."
+
+msgid "Manage Harvests"
+msgstr "कापणी व्यवस्थापित करा"
+
+msgid "View agriculture reports and farming records."
+msgstr "शेतीचे अहवाल आणि शेतीचे रेकॉर्ड पहा."
+
+msgid "View Reports"
+msgstr "अहवाल पहा"
+
+
+# =========================
+# WEATHER
+# =========================
+
+msgid "Drizzle 🌦️"
+msgstr "रिमझिम पाऊस 🌦️"
+
+msgid "Rain 🌧️"
+msgstr "पाऊस 🌧️"
+
+msgid "Clear ☀️"
+msgstr "निरभ्र ☀️"
+
+msgid "Cloudy ☁️"
+msgstr "ढगाळ ☁️"
+
+msgid "Partly Cloudy ⛅"
+msgstr "अंशतः ढगाळ ⛅"
+
+
+# =========================
+# REPORTS
+# =========================
+
+msgid "Agriculture Reports"
+msgstr "कृषी अहवाल"
+
+msgid "View summary and detailed reports of your farming activities."
+msgstr "तुमच्या शेतीच्या क्रियाकलापांचे संक्षिप्त आणि सविस्तर अहवाल पहा."
+
+msgid "Print Report"
+msgstr "अहवाल प्रिंट करा"
+
+msgid "Total Farmers"
+msgstr "एकूण शेतकरी"
+
+msgid "Total Farms"
+msgstr "एकूण शेत"
+
+msgid "Total Crops"
+msgstr "एकूण पिके"
+
+msgid "Total Activities"
+msgstr "एकूण क्रियाकलाप"
+
+msgid "Total Harvests"
+msgstr "एकूण कापणी"
+
+msgid "Activity Cost"
+msgstr "क्रियाकलाप खर्च"
+
+msgid "Farming Activity Report"
+msgstr "शेती क्रियाकलाप अहवाल"
+
+msgid "No activity records available."
+msgstr "कोणतेही क्रियाकलाप रेकॉर्ड उपलब्ध नाहीत."
+
+msgid "Harvest Report"
+msgstr "कापणी अहवाल"
+
+msgid "No harvest records available."
+msgstr "कापणीचे कोणतेही रेकॉर्ड उपलब्ध नाहीत."
+
+msgid "Crop-wise Activity Cost"
+msgstr "पिकानुसार क्रियाकलाप खर्च"
+
+msgid "Total Activity Cost (₹)"
+msgstr "एकूण क्रियाकलाप खर्च (₹)"
+
+
+# =========================
+# LOGIN
+# =========================
+
+msgid "Login"
+msgstr "लॉगिन"
+
+msgid "Username"
+msgstr "वापरकर्तानाव"
+
+msgid "Password"
+msgstr "पासवर्ड"
+
+msgid "Enter username"
+msgstr "वापरकर्तानाव प्रविष्ट करा"
+
+msgid "Enter password"
+msgstr "पासवर्ड प्रविष्ट करा"
+
+msgid "Username or password is incorrect."
+msgstr "वापरकर्तानाव किंवा पासवर्ड चुकीचा आहे."

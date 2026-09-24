@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Edit Farm" %} - ShetiMitra
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <section class="form-page">
+
+        <!-- Page Header -->
+        <div class="form-header">
+
+            <h1>
+                ✏️ {% trans "Edit Farm" %}
+            </h1>
+
+            <p>
+                {% trans "Update farm details below." %}
+            </p>
+
+        </div>
+
+
+        <!-- Edit Farm Form -->
+        <form method="POST" class="farmer-form">
+
+            {% csrf_token %}
+
+
+            <!-- Farmer -->
+            <div class="form-group">
+
+                <label for="farmer">
+                    👨‍🌾 {% trans "Farmer" %}
+                </label>
+
+                <select
+                    name="farmer"
+                    id="farmer"
+                    required
+                >
+
+                    {% for farmer in farmers %}
+
+                        <option
+                            value="{{ farmer.farmer_id }}"
+                            {% if farmer.farmer_id == farm.farmer_id %}
+                                selected
+                            {% endif %}
+                        >
+                            {{ farmer.name }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <!-- Farm Name -->
+            <div class="form-group">
+
+                <label for="farm_name">
+                    🚜 {% trans "Farm Name" %}
+                </label>
+
+                <input
+                    type="text"
+                    name="farm_name"
+                    id="farm_name"
+                    value="{{ farm.farm_name }}"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Land Area -->
+            <div class="form-group">
+
+                <label for="land_area_acres">
+                    📐 {% trans "Land Area (Acres)" %}
+                </label>
+
+                <input
+                    type="number"
+                    name="land_area_acres"
+                    id="land_area_acres"
+                    value="{{ farm.land_area_acres }}"
+                    step="0.01"
+                    min="0"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Soil Type -->
+            <div class="form-group">
+
+                <label for="soil_type">
+                    🌱 {% trans "Soil Type" %}
+                </label>
+
+                <input
+                    type="text"
+                    name="soil_type"
+                    id="soil_type"
+                    value="{{ farm.soil_type }}"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Irrigation Type -->
+            <div class="form-group">
+
+                <label for="irrigation_type">
+                    💧 {% trans "Irrigation Type" %}
+                </label>
+
+                <input
+                    type="text"
+                    name="irrigation_type"
+                    id="irrigation_type"
+                    value="{{ farm.irrigation_type }}"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Village -->
+            <div class="form-group">
+
+                <label for="village">
+                    📍 {% trans "Village" %}
+                </label>
+
+                <input
+                    type="text"
+                    name="village"
+                    id="village"
+                    value="{{ farm.village }}"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Buttons -->
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    💾 {% trans "Update Farm" %}
+                </button>
+
+
+                <a
+                    href="{% url 'farm_list' %}"
+                    class="secondary-button"
+                >
+                    ← {% trans "Back to Farm List" %}
+                </a>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,331 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+    ShetiMitra - {% trans "Smart Agriculture" %}
+{% endblock %}
+
+{% block content %}
+
+<!-- ================================
+     Welcome Section
+     ================================ -->
+
+<section class="welcome-section">
+
+    <h1>
+        {% trans "Welcome to ShetiMitra" %} 👨‍🌾
+    </h1>
+
+    <p>
+        {% trans "Manage your farming activities, crops, farms, harvests and weather information in one place." %}
+    </p>
+
+</section>
+
+
+<!-- ================================
+     Weather Section
+     ================================ -->
+
+<section class="weather-section">
+
+    <h2>
+        🌦️ {% trans "Current Weather" %}
+    </h2>
+
+    <div class="weather-grid">
+
+        <!-- Temperature -->
+
+        <div class="weather-card">
+
+            <div class="weather-icon">
+                🌡️
+            </div>
+
+            <div>
+                <h3>
+                    {% trans "Temperature" %}
+                </h3>
+
+                <p>
+                    {{ weather.temperature_2m }} °C
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- Humidity -->
+
+        <div class="weather-card">
+
+            <div class="weather-icon">
+                💧
+            </div>
+
+            <div>
+                <h3>
+                    {% trans "Humidity" %}
+                </h3>
+
+                <p>
+                    {{ weather.relative_humidity_2m }} %
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- Wind Speed -->
+
+        <div class="weather-card">
+
+            <div class="weather-icon">
+                💨
+            </div>
+
+            <div>
+                <h3>
+                    {% trans "Wind Speed" %}
+                </h3>
+
+                <p>
+                    {{ weather.wind_speed_10m }} km/h
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- Weather Status -->
+
+        <div class="weather-card">
+
+            <div class="weather-icon">
+                ☁️
+            </div>
+
+            <div>
+                <h3>
+                    {% trans "Weather Status" %}
+                </h3>
+
+                <p>
+                    {% if weather.weather_status == "Drizzle 🌦️" %}
+                        {% trans "Drizzle 🌦️" %}
+                    {% elif weather.weather_status == "Rain 🌧️" %}
+                        {% trans "Rain 🌧️" %}
+                    {% elif weather.weather_status == "Clear ☀️" %}
+                        {% trans "Clear ☀️" %}
+                    {% elif weather.weather_status == "Cloudy ☁️" %}
+                        {% trans "Cloudy ☁️" %}
+                    {% elif weather.weather_status == "Partly Cloudy ⛅" %}
+                        {% trans "Partly Cloudy ⛅" %}
+                    {% else %}
+                        {{ weather.weather_status }}
+                    {% endif %}
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <p class="weather-time">
+        🕒 {% trans "Last Updated" %}: {{ weather.time }}
+    </p>
+
+</section>
+
+
+<!-- ================================
+     Farm Management Section
+     ================================ -->
+
+<section class="management-section">
+
+    <h2>
+        🌱 {% trans "Farm Management" %}
+    </h2>
+
+
+    <div class="management-grid">
+
+
+        <!-- ============================
+             Farmer Management
+             ============================ -->
+
+        <div class="management-card">
+
+            <div class="management-icon">
+                👨‍🌾
+            </div>
+
+            <h3>
+                {% trans "Farmer Management" %}
+            </h3>
+
+            <p>
+                {% trans "Manage farmer information and details." %}
+            </p>
+
+            <a
+                href="{% url 'farmer_list' %}"
+                class="primary-button"
+            >
+                {% trans "Manage Farmers" %} →
+            </a>
+
+        </div>
+
+
+        <!-- ============================
+             Farm Management
+             ============================ -->
+
+        <div class="management-card">
+
+            <div class="management-icon">
+                🌳
+            </div>
+
+            <h3>
+                {% trans "Farm Management" %}
+            </h3>
+
+            <p>
+                {% trans "Manage farms, land and irrigation information." %}
+            </p>
+
+            <a
+                href="{% url 'farm_list' %}"
+                class="primary-button"
+            >
+                {% trans "Manage Farms" %} →
+            </a>
+
+        </div>
+
+
+        <!-- ============================
+             Crop Management
+             ============================ -->
+
+        <div class="management-card">
+
+            <div class="management-icon">
+                🌱
+            </div>
+
+            <h3>
+                {% trans "Crop Management" %}
+            </h3>
+
+            <p>
+                {% trans "Manage crops, seasons and cultivation details." %}
+            </p>
+
+            <a
+                href="{% url 'crop_list' %}"
+                class="primary-button"
+            >
+                {% trans "Manage Crops" %} →
+            </a>
+
+        </div>
+
+
+        <!-- ============================
+             Farming Activities
+             ============================ -->
+
+        <div class="management-card">
+
+            <div class="management-icon">
+                🚜
+            </div>
+
+            <h3>
+                {% trans "Farming Activities" %}
+            </h3>
+
+            <p>
+                {% trans "Manage farming activities, dates and expenses." %}
+            </p>
+
+            <a
+                href="{% url 'activity_list' %}"
+                class="primary-button"
+            >
+                {% trans "Manage Activities" %} →
+            </a>
+
+        </div>
+
+
+        <!-- ============================
+             Harvest Management
+             ============================ -->
+
+        <div class="management-card">
+
+            <div class="management-icon">
+                🌾
+            </div>
+
+            <h3>
+                {% trans "Harvest Management" %}
+            </h3>
+
+            <p>
+                {% trans "Manage harvest quantity, quality and dates." %}
+            </p>
+
+            <a
+                href="{% url 'harvest_list' %}"
+                class="primary-button"
+            >
+                {% trans "Manage Harvests" %} →
+            </a>
+
+        </div>
+
+
+        <!-- ============================
+             Reports
+             ============================ -->
+
+        <div class="management-card">
+
+            <div class="management-icon">
+                📊
+            </div>
+
+            <h3>
+                {% trans "Reports" %}
+            </h3>
+
+            <p>
+                {% trans "View agriculture reports and farming records." %}
+            </p>
+
+            <a
+                href="{% url 'reports' %}"
+                class="primary-button"
+            >
+                {% trans "View Reports" %} →
+            </a>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+Edit Crop - ShetiMitra
+{% endblock %}
+
+{% block content %}
+
+<div class="form-page">
+
+    <!-- Page Header -->
+    <div class="form-header">
+
+        <div>
+            <h1>🌱 {% trans "Edit Crop" %}</h1>
+
+            <p>
+                {% trans "Update crop details" %}
+            </p>
+        </div>
+
+        <a href="{% url 'crop_list' %}" class="secondary-button">
+            ← {% trans "Back to Crop List" %}
+        </a>
+
+    </div>
+
+
+    <!-- Edit Crop Form -->
+    <form method="POST" class="farmer-form">
+
+        {% csrf_token %}
+
+
+        <!-- Farm -->
+        <div class="form-group">
+
+            <label for="farm">
+                🚜 {% trans "Farm" %}
+            </label>
+
+            <select
+                name="farm"
+                id="farm"
+                required
+            >
+
+                {% for farm in farms %}
+
+                    <option
+                        value="{{ farm.farm_id }}"
+                        {% if farm.farm_id == crop.farm_id %}
+                            selected
+                        {% endif %}
+                    >
+                        {{ farm.farm_name }} - {{ farm.farmer.name }}
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+
+        <!-- Crop Name -->
+        <div class="form-group">
+
+            <label for="crop_name">
+                🌱 {% trans "Crop Name" %}
+            </label>
+
+            <input
+                type="text"
+                id="crop_name"
+                name="crop_name"
+                value="{{ crop.crop_name }}"
+                placeholder="Enter crop name"
+                required
+            >
+
+        </div>
+
+
+        <!-- Season -->
+        <div class="form-group">
+
+            <label for="season">
+                ☀️ {% trans "Season" %}
+            </label>
+
+            <select
+                name="season"
+                id="season"
+                required
+            >
+
+                <option
+                    value="Kharif"
+                    {% if crop.season == "Kharif" %}
+                        selected
+                    {% endif %}
+                >
+                    Kharif
+                </option>
+
+                <option
+                    value="Rabi"
+                    {% if crop.season == "Rabi" %}
+                        selected
+                    {% endif %}
+                >
+                    Rabi
+                </option>
+
+                <option
+                    value="Summer"
+                    {% if crop.season == "Summer" %}
+                        selected
+                    {% endif %}
+                >
+                    Summer
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Sowing Date -->
+        <div class="form-group">
+
+            <label for="sowing_date">
+                📅 {% trans "Sowing Date" %}
+            </label>
+
+            <input
+                type="date"
+                id="sowing_date"
+                name="sowing_date"
+                value="{{ crop.sowing_date|date:'Y-m-d' }}"
+                required
+            >
+
+        </div>
+
+
+        <!-- Expected Harvest Date -->
+        <div class="form-group">
+
+            <label for="expected_harvest_date">
+                📅 {% trans "Expected Harvest Date" %}
+            </label>
+
+            <input
+                type="date"
+                id="expected_harvest_date"
+                name="expected_harvest_date"
+                value="{{ crop.expected_harvest_date|date:'Y-m-d' }}"
+                required
+            >
+
+        </div>
+
+
+        <!-- Area -->
+        <div class="form-group">
+
+            <label for="area_acres">
+                📐 {% trans "Area (Acres)" %}
+            </label>
+
+            <input
+                type="number"
+                id="area_acres"
+                name="area_acres"
+                value="{{ crop.area_acres }}"
+                step="0.01"
+                min="0"
+                placeholder="Enter area in acres"
+                required
+            >
+
+        </div>
+
+
+        <!-- Buttons -->
+        <div class="form-actions">
+
+            <button
+                type="submit"
+                class="primary-button"
+            >
+                ✏️ {% trans "Update Crop" %}
+            </button>
+
+            <a
+                href="{% url 'crop_list' %}"
+                class="secondary-button"
+            >
+                ✕ {% trans "Cancel" %}
+            </a>
+
+        </div>
+
+    </form>
+
+
+    <!-- Back -->
+    <div class="back-section">
+
+        <a href="{% url 'crop_list' %}">
+            ← {% trans "Back to Crop List" %}
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

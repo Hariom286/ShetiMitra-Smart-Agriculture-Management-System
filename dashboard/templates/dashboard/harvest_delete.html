@@ -1,0 +1,336 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Delete Harvest" %} - ShetiMitra
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+    /* =========================
+       DELETE HARVEST PAGE
+    ========================== */
+
+    .harvest-delete-page {
+        max-width: 650px;
+        margin: 40px auto;
+    }
+
+    .harvest-delete-card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 35px;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+        text-align: center;
+    }
+
+
+    /* =========================
+       ICON
+    ========================== */
+
+    .delete-icon {
+        font-size: 55px;
+        margin-bottom: 10px;
+    }
+
+
+    /* =========================
+       HEADER
+    ========================== */
+
+    .harvest-delete-card h1 {
+        margin: 0 0 10px 0;
+        font-size: 28px;
+    }
+
+    .delete-message {
+        color: #666;
+        font-size: 15px;
+        margin-bottom: 25px;
+    }
+
+
+    /* =========================
+       HARVEST DETAILS
+    ========================== */
+
+    .harvest-details {
+        background: #f7f7f7;
+        border: 1px solid #dddddd;
+        border-radius: 9px;
+        padding: 20px;
+        margin: 20px 0;
+        text-align: left;
+    }
+
+    .harvest-detail-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        padding: 10px 0;
+        border-bottom: 1px solid #e2e2e2;
+    }
+
+    .harvest-detail-row:last-child {
+        border-bottom: none;
+    }
+
+    .harvest-detail-label {
+        font-weight: 600;
+        color: #444;
+    }
+
+    .harvest-detail-value {
+        color: #222;
+        text-align: right;
+    }
+
+
+    /* =========================
+       WARNING
+    ========================== */
+
+    .delete-warning {
+        background: #fff3cd;
+        border: 1px solid #ffe08a;
+        color: #856404;
+        border-radius: 8px;
+        padding: 14px;
+        margin: 20px 0;
+        font-size: 14px;
+    }
+
+
+    /* =========================
+       BUTTONS
+    ========================== */
+
+    .delete-actions {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 25px;
+    }
+
+    .confirm-delete-button {
+        display: inline-block;
+        padding: 11px 20px;
+        background: #d32f2f;
+        color: #ffffff !important;
+        border: none;
+        border-radius: 7px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .confirm-delete-button:hover {
+        background: #b71c1c;
+    }
+
+    .cancel-delete-button {
+        display: inline-block;
+        padding: 11px 20px;
+        background: #eeeeee;
+        color: #333 !important;
+        text-decoration: none;
+        border-radius: 7px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .cancel-delete-button:hover {
+        background: #dddddd;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 768px) {
+
+        .harvest-delete-page {
+            margin: 20px auto;
+        }
+
+        .harvest-delete-card {
+            padding: 25px 18px;
+        }
+
+        .harvest-delete-card h1 {
+            font-size: 23px;
+        }
+
+        .harvest-detail-row {
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .harvest-detail-value {
+            text-align: left;
+        }
+
+        .delete-actions {
+            flex-direction: column;
+        }
+
+        .confirm-delete-button,
+        .cancel-delete-button {
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+    }
+
+</style>
+
+
+<div class="container harvest-delete-page">
+
+    <div class="harvest-delete-card">
+
+        <!-- =========================
+             DELETE ICON
+        ========================== -->
+
+        <div class="delete-icon">
+            🗑️
+        </div>
+
+
+        <!-- =========================
+             TITLE
+        ========================== -->
+
+        <h1>
+            {% trans "Delete Harvest" %}
+        </h1>
+
+        <p class="delete-message">
+            {% trans "Please confirm before deleting this harvest record." %}
+        </p>
+
+
+        <!-- =========================
+             HARVEST DETAILS
+        ========================== -->
+
+        <div class="harvest-details">
+
+            <div class="harvest-detail-row">
+
+                <span class="harvest-detail-label">
+                    🌱 {% trans "Crop" %}
+                </span>
+
+                <span class="harvest-detail-value">
+                    {{ harvest.crop.crop_name }}
+                </span>
+
+            </div>
+
+
+            <div class="harvest-detail-row">
+
+                <span class="harvest-detail-label">
+                    📅 {% trans "Harvest Date" %}
+                </span>
+
+                <span class="harvest-detail-value">
+                    {{ harvest.harvest_date|date:"d M Y" }}
+                </span>
+
+            </div>
+
+
+            <div class="harvest-detail-row">
+
+                <span class="harvest-detail-label">
+                    ⚖️ {% trans "Quantity" %}
+                </span>
+
+                <span class="harvest-detail-value">
+                    {{ harvest.quantity }} {{ harvest.unit }}
+                </span>
+
+            </div>
+
+
+            <div class="harvest-detail-row">
+
+                <span class="harvest-detail-label">
+                    ⭐ {% trans "Quality" %}
+                </span>
+
+                <span class="harvest-detail-value">
+                    {{ harvest.quality|default:"-" }}
+                </span>
+
+            </div>
+
+
+            <div class="harvest-detail-row">
+
+                <span class="harvest-detail-label">
+                    📝 {% trans "Notes" %}
+                </span>
+
+                <span class="harvest-detail-value">
+                    {{ harvest.notes|default:"-" }}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             WARNING
+        ========================== -->
+
+        <div class="delete-warning">
+
+            ⚠️
+            {% trans "Are you sure you want to delete this harvest?" %}
+
+        </div>
+
+
+        <!-- =========================
+             ACTION BUTTONS
+        ========================== -->
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="delete-actions">
+
+                <button
+                    type="submit"
+                    class="confirm-delete-button"
+                >
+                    🗑️ {% trans "Yes, Delete Harvest" %}
+                </button>
+
+
+                <a
+                    href="{% url 'harvest_list' %}"
+                    class="cancel-delete-button"
+                >
+                    ← {% trans "Cancel" %}
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

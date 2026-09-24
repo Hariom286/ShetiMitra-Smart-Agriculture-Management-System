@@ -1,0 +1,323 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register - ShetiMitra</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+        .register-page {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 15px;
+        }
+
+        .register-card {
+            width: 100%;
+            max-width: 650px;
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .register-title {
+            text-align: center;
+            margin-bottom: 8px;
+            color: #198754;
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .register-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .register-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            margin-bottom: 7px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input {
+            padding: 12px 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #198754;
+            box-shadow: 0 0 0 2px rgba(25, 135, 84, 0.12);
+        }
+
+        .register-button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 22px;
+            border: none;
+            border-radius: 8px;
+            background: #198754;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .register-button:hover {
+            background: #157347;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 18px;
+        }
+
+        .login-link a {
+            color: #198754;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .message-box {
+            margin-bottom: 18px;
+            padding: 12px;
+            border-radius: 8px;
+            background: #f8d7da;
+            color: #842029;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+
+            .register-card {
+                padding: 22px 18px;
+            }
+
+            .register-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .register-title {
+                font-size: 25px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="register-page">
+
+    <div class="register-card">
+
+        <div class="register-title">
+            🌾 ShetiMitra
+        </div>
+
+        <div class="register-subtitle">
+            Create your account
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message-box">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            <div class="register-grid">
+
+                <div class="form-group full">
+                    <label for="name">Full Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+
+                    <input
+                        type="tel"
+                        id="mobile"
+                        name="mobile"
+                        placeholder="Enter mobile number"
+                        maxlength="15"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="land_area_acres">
+                        Land Area (Acres)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="land_area_acres"
+                        name="land_area_acres"
+                        placeholder="e.g. 5.00"
+                        step="0.01"
+                        min="0"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="village">Village</label>
+
+                    <input
+                        type="text"
+                        id="village"
+                        name="village"
+                        placeholder="Enter village"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="taluka">Taluka</label>
+
+                    <input
+                        type="text"
+                        id="taluka"
+                        name="taluka"
+                        placeholder="Enter taluka"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="district">District</label>
+
+                    <input
+                        type="text"
+                        id="district"
+                        name="district"
+                        placeholder="Enter district"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Create username"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create password"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="confirm_password">
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirm_password"
+                        name="confirm_password"
+                        placeholder="Confirm password"
+                        required
+                    >
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="register-button">
+                Create Account
+            </button>
+
+        </form>
+
+
+        <div class="login-link">
+
+            Already have an account?
+
+            <a href="{% url 'login' %}">
+                Login
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

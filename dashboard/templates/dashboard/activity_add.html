@@ -1,0 +1,279 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as CURRENT_LANGUAGE %}
+
+<!DOCTYPE html>
+<html lang="{{ CURRENT_LANGUAGE }}">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% translate "Add Activity" %} - ShetiMitra</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=22">
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="logo">
+        🌾 ShetiMitra
+    </div>
+
+    <div class="tagline">
+        {% translate "Smart Agriculture Management System" %}
+    </div>
+
+    <!-- LANGUAGE SELECTOR -->
+
+    <div class="language-selector">
+
+        <form method="post" action="{% url 'set_language' %}">
+
+            {% csrf_token %}
+
+            <input
+                type="hidden"
+                name="next"
+                value="{{ request.get_full_path }}"
+            >
+
+            <select
+                name="language"
+                onchange="this.form.submit()"
+            >
+
+                <option
+                    value="en"
+                    {% if CURRENT_LANGUAGE == 'en' %}selected{% endif %}
+                >
+                    English
+                </option>
+
+                <option
+                    value="mr"
+                    {% if CURRENT_LANGUAGE == 'mr' %}selected{% endif %}
+                >
+                    मराठी
+                </option>
+
+                <option
+                    value="hi"
+                    {% if CURRENT_LANGUAGE == 'hi' %}selected{% endif %}
+                >
+                    हिंदी
+                </option>
+
+            </select>
+
+        </form>
+
+    </div>
+
+</header>
+
+
+<!-- ================= MAIN CONTAINER ================= -->
+
+<main class="container">
+
+    <!-- PAGE HEADER -->
+
+    <section class="page-header">
+
+        <div>
+
+            <h1>
+                ➕ {% translate "Add Farming Activity" %}
+            </h1>
+
+            <p>
+                {% translate "Add an activity performed on a crop." %}
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FORM ================= -->
+
+    <section class="form-section">
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <!-- CROP -->
+
+            <div class="form-group">
+
+                <label for="crop">
+                    {% translate "Crop" %}
+                </label>
+
+                <select
+                    name="crop"
+                    id="crop"
+                    required
+                >
+
+                    <option value="">
+                        -- {% translate "Select Crop" %} --
+                    </option>
+
+                    {% for crop in crops %}
+
+                    <option value="{{ crop.crop_id }}">
+
+                        {{ crop.crop_name }}
+                        - {{ crop.farm.farm_name }}
+
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <!-- ACTIVITY TYPE -->
+
+            <div class="form-group">
+
+                <label for="activity_type">
+                    {% translate "Activity Type" %}
+                </label>
+
+                <input
+                    type="text"
+                    name="activity_type"
+                    id="activity_type"
+                    placeholder="{% translate 'Example: Fertilizer, Spraying, Weeding' %}"
+                    required
+                >
+
+            </div>
+
+
+            <!-- ACTIVITY DATE -->
+
+            <div class="form-group">
+
+                <label for="activity_date">
+                    {% translate "Activity Date" %}
+                </label>
+
+                <input
+                    type="date"
+                    name="activity_date"
+                    id="activity_date"
+                    required
+                >
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="form-group">
+
+                <label for="description">
+                    {% translate "Description" %}
+                </label>
+
+                <textarea
+                    name="description"
+                    id="description"
+                    rows="4"
+                    placeholder="{% translate 'Enter activity details...' %}"
+                ></textarea>
+
+            </div>
+
+
+            <!-- COST -->
+
+            <div class="form-group">
+
+                <label for="cost">
+                    {% translate "Cost (₹)" %}
+                </label>
+
+                <input
+                    type="number"
+                    name="cost"
+                    id="cost"
+                    step="0.01"
+                    min="0"
+                    value="0"
+                    placeholder="{% translate 'Enter activity cost' %}"
+                >
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="btn btn-add"
+                >
+                    💾 {% translate "Save Activity" %}
+                </button>
+
+
+                <a
+                    href="{% url 'activity_list' %}"
+                    class="btn btn-cancel"
+                >
+                    ❌ {% translate "Cancel" %}
+                </a>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- BACK -->
+
+    <div class="back-section">
+
+        <a
+            href="{% url 'activity_list' %}"
+            class="secondary-button"
+        >
+            ← {% translate "Back to Activity List" %}
+        </a>
+
+    </div>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <p>
+        © 2026 ShetiMitra |
+        {% translate "Smart Agriculture Management System" %}
+    </p>
+
+</footer>
+
+</body>
+
+</html>

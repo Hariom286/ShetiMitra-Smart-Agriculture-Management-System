@@ -1,0 +1,193 @@
+{% load static %}
+{% load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+        ShetiMitra
+        {% endblock %}
+    </title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=31">
+
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="header-container">
+
+            <!-- Logo -->
+
+            <div class="brand">
+
+                <div class="logo">
+                    🌾 ShetiMitra
+                </div>
+
+                <div class="tagline">
+                    {% trans "Smart Agriculture Management System" %}
+                </div>
+
+            </div>
+
+
+            <!-- Navigation -->
+
+            <nav class="main-nav">
+
+                <a href="{% url 'home' %}">
+                    {% trans "Home" %}
+                </a>
+
+                <a href="{% url 'farmer_list' %}">
+                    {% trans "Farmers" %}
+                </a>
+
+                <a href="{% url 'farm_list' %}">
+                    {% trans "Farms" %}
+                </a>
+
+                <a href="{% url 'crop_list' %}">
+                    {% trans "Crops" %}
+                </a>
+
+                <a href="{% url 'activity_list' %}">
+                    {% trans "Activities" %}
+                </a>
+
+                <a href="{% url 'harvest_list' %}">
+                    {% trans "Harvests" %}
+                </a>
+
+                <a href="{% url 'reports' %}">
+                    {% trans "Reports" %}
+                </a>
+
+
+                <!-- Logout -->
+
+                {% if user.is_authenticated %}
+
+                    <form
+                        method="post"
+                        action="{% url 'logout' %}"
+                        style="display: inline;"
+                    >
+
+                        {% csrf_token %}
+
+                        <button
+                            type="submit"
+                            class="logout-button"
+                        >
+                            {% trans "Logout" %}
+                        </button>
+
+                    </form>
+
+                {% endif %}
+
+            </nav>
+
+
+            <!-- Language Selector -->
+
+            <div class="language-selector">
+
+                <form
+                    action="{% url 'set_language' %}"
+                    method="post"
+                >
+
+                    {% csrf_token %}
+
+                    <input
+                        type="hidden"
+                        name="next"
+                        value="{{ request.get_full_path }}"
+                    >
+
+
+                    <select
+                        name="language"
+                        onchange="this.form.submit()"
+                    >
+
+                        <option
+                            value="en"
+                            {% if LANGUAGE_CODE == "en" %}
+                                selected
+                            {% endif %}
+                        >
+                            English
+                        </option>
+
+
+                        <option
+                            value="mr"
+                            {% if LANGUAGE_CODE == "mr" %}
+                                selected
+                            {% endif %}
+                        >
+                            मराठी
+                        </option>
+
+
+                        <option
+                            value="hi"
+                            {% if LANGUAGE_CODE == "hi" %}
+                                selected
+                            {% endif %}
+                        >
+                            हिन्दी
+                        </option>
+
+                    </select>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main-content">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <p>
+            🌾 {% trans "ShetiMitra – Smart Agriculture Management System" %}
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

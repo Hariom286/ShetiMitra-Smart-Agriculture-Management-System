@@ -1,0 +1,428 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}
+    {% trans "Delete Activity" %} - ShetiMitra
+{% endblock %}
+
+{% block content %}
+
+<style>
+    /* ================================
+       Activity Delete Page
+       ================================ */
+
+    .activity-delete-page {
+        max-width: 900px;
+        margin: 30px auto;
+        padding: 0 20px;
+    }
+
+    /* Header */
+    .activity-delete-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 25px;
+        padding: 20px 25px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .activity-delete-title h1 {
+        margin: 0;
+        font-size: 28px;
+    }
+
+    .activity-delete-title p {
+        margin: 8px 0 0;
+        color: #666;
+        font-size: 15px;
+    }
+
+    /* Language Translator - RIGHT SIDE */
+    .activity-language-selector {
+        margin-left: auto;
+        flex-shrink: 0;
+    }
+
+    .activity-language-selector form {
+        margin: 0;
+    }
+
+    .activity-language-selector select {
+        padding: 9px 12px;
+        min-width: 120px;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background: #ffffff;
+        font-size: 14px;
+        cursor: pointer;
+        outline: none;
+    }
+
+    .activity-language-selector select:focus {
+        border-color: #4caf50;
+    }
+
+    /* Delete Card */
+    .activity-delete-card {
+        background: #ffffff;
+        padding: 35px;
+        border-radius: 12px;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+        text-align: center;
+    }
+
+    .activity-delete-icon {
+        font-size: 55px;
+        margin-bottom: 10px;
+    }
+
+    .activity-delete-card h2 {
+        margin: 0 0 10px;
+        font-size: 25px;
+    }
+
+    .activity-delete-message {
+        color: #666;
+        margin-bottom: 25px;
+        font-size: 15px;
+    }
+
+    /* Activity Details */
+    .activity-details {
+        max-width: 650px;
+        margin: 0 auto 25px;
+        text-align: left;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .activity-detail-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 13px 18px;
+        border-bottom: 1px solid #eeeeee;
+    }
+
+    .activity-detail-row:last-child {
+        border-bottom: none;
+    }
+
+    .activity-detail-label {
+        font-weight: 600;
+    }
+
+    .activity-detail-value {
+        text-align: right;
+        color: #555;
+    }
+
+    /* Warning */
+    .activity-delete-warning {
+        margin: 20px auto;
+        max-width: 650px;
+        padding: 14px 18px;
+        border-radius: 8px;
+        background: #fff3cd;
+        border: 1px solid #ffe69c;
+        color: #664d03;
+        font-weight: 600;
+    }
+
+    /* Buttons */
+    .activity-delete-actions {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 25px;
+        flex-wrap: wrap;
+    }
+
+    .activity-confirm-delete-button,
+    .activity-cancel-delete-button {
+        display: inline-block;
+        padding: 11px 20px;
+        border-radius: 7px;
+        text-decoration: none;
+        border: none;
+        font-size: 15px;
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    .activity-confirm-delete-button {
+        background: #dc3545;
+        color: #ffffff;
+    }
+
+    .activity-confirm-delete-button:hover {
+        background: #c82333;
+    }
+
+    .activity-cancel-delete-button {
+        background: #eeeeee;
+        color: #333333;
+    }
+
+    .activity-cancel-delete-button:hover {
+        background: #dddddd;
+    }
+
+    /* Mobile */
+    @media (max-width: 650px) {
+
+        .activity-delete-page {
+            padding: 0 12px;
+        }
+
+        .activity-delete-header {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .activity-language-selector {
+            margin-left: 0;
+            align-self: flex-end;
+        }
+
+        .activity-delete-title h1 {
+            font-size: 24px;
+        }
+
+        .activity-delete-card {
+            padding: 22px;
+        }
+
+        .activity-detail-row {
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .activity-detail-value {
+            text-align: left;
+        }
+
+        .activity-delete-actions {
+            flex-direction: column;
+        }
+
+        .activity-confirm-delete-button,
+        .activity-cancel-delete-button {
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+    }
+</style>
+
+
+<div class="activity-delete-page">
+
+    <!-- ================================
+         Header
+         ================================ -->
+
+    <div class="activity-delete-header">
+
+        <div class="activity-delete-title">
+
+            <h1>
+                🗑️ {% trans "Delete Activity" %}
+            </h1>
+
+            <p>
+                {% trans "Please confirm before deleting this activity record." %}
+            </p>
+
+        </div>
+
+
+        <!-- Language Translator - RIGHT SIDE -->
+
+        <div class="activity-language-selector">
+
+            <form action="{% url 'set_language' %}" method="post">
+
+                {% csrf_token %}
+
+                <input
+                    type="hidden"
+                    name="next"
+                    value="{{ request.get_full_path }}"
+                >
+
+                <select
+                    name="language"
+                    onchange="this.form.submit()"
+                >
+
+                    <option
+                        value="en"
+                        {% if LANGUAGE_CODE == "en" %}selected{% endif %}
+                    >
+                        English
+                    </option>
+
+                    <option
+                        value="mr"
+                        {% if LANGUAGE_CODE == "mr" %}selected{% endif %}
+                    >
+                        मराठी
+                    </option>
+
+                    <option
+                        value="hi"
+                        {% if LANGUAGE_CODE == "hi" %}selected{% endif %}
+                    >
+                        हिंदी
+                    </option>
+
+                </select>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================
+         Delete Card
+         ================================ -->
+
+    <div class="activity-delete-card">
+
+        <div class="activity-delete-icon">
+            ⚠️
+        </div>
+
+        <h2>
+            {% trans "Are you sure?" %}
+        </h2>
+
+        <p class="activity-delete-message">
+            {% trans "You are about to delete this activity record." %}
+        </p>
+
+
+        <!-- Activity Details -->
+
+        <div class="activity-details">
+
+            <div class="activity-detail-row">
+
+                <span class="activity-detail-label">
+                    🌱 {% trans "Crop" %}
+                </span>
+
+                <span class="activity-detail-value">
+                    {{ activity.crop.crop_name }}
+                </span>
+
+            </div>
+
+
+            <div class="activity-detail-row">
+
+                <span class="activity-detail-label">
+                    🚜 {% trans "Activity Name" %}
+                </span>
+
+                <span class="activity-detail-value">
+                    {{ activity.activity_name }}
+                </span>
+
+            </div>
+
+
+            <div class="activity-detail-row">
+
+                <span class="activity-detail-label">
+                    📅 {% trans "Activity Date" %}
+                </span>
+
+                <span class="activity-detail-value">
+                    {{ activity.activity_date|date:"d M Y" }}
+                </span>
+
+            </div>
+
+
+            <div class="activity-detail-row">
+
+                <span class="activity-detail-label">
+                    💰 {% trans "Expense" %}
+                </span>
+
+                <span class="activity-detail-value">
+                    ₹ {{ activity.expense }}
+                </span>
+
+            </div>
+
+
+            <div class="activity-detail-row">
+
+                <span class="activity-detail-label">
+                    📝 {% trans "Description" %}
+                </span>
+
+                <span class="activity-detail-value">
+                    {{ activity.description|default:"-" }}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Warning -->
+
+        <div class="activity-delete-warning">
+
+            ⚠️
+            {% trans "Are you sure you want to delete this activity?" %}
+
+        </div>
+
+
+        <!-- Buttons -->
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="activity-delete-actions">
+
+                <button
+                    type="submit"
+                    class="activity-confirm-delete-button"
+                >
+                    🗑️ {% trans "Yes, Delete Activity" %}
+                </button>
+
+
+                <a
+                    href="{% url 'activity_list' %}"
+                    class="activity-cancel-delete-button"
+                >
+                    ← {% trans "Cancel" %}
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

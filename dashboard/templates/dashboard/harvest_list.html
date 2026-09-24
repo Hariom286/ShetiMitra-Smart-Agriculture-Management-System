@@ -1,0 +1,425 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Harvest Management" %} - ShetiMitra
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+    /* =========================
+       HARVEST MANAGEMENT
+    ========================== */
+
+    .harvest-page {
+        width: 100%;
+    }
+
+    .harvest-page .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 25px;
+    }
+
+    .harvest-page .page-header h1 {
+        margin: 0 0 8px 0;
+    }
+
+    .harvest-page .page-header p {
+        margin: 0;
+        color: #666;
+    }
+
+
+    /* =========================
+       HARVEST TABLE
+    ========================== */
+
+    .harvest-table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .harvest-table {
+        width: 100%;
+        min-width: 1000px;
+        border-collapse: collapse;
+        background: #ffffff;
+    }
+
+    .harvest-table th {
+        background: #2e7d32;
+        color: white;
+        padding: 14px 12px;
+        text-align: left;
+        font-size: 14px;
+        border: 2px solid #000;
+        white-space: nowrap;
+    }
+
+    .harvest-table td {
+        background: #ffffff;
+        color: #333;
+        padding: 14px 12px;
+        font-size: 14px;
+        border: 2px solid #000;
+        vertical-align: middle;
+    }
+
+    .harvest-table tbody tr:hover td {
+        background: #f1f8f1;
+    }
+
+
+    /* =========================
+       ACTION BUTTONS
+    ========================== */
+
+    .harvest-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+    }
+
+    .harvest-edit-button {
+        display: inline-block;
+        padding: 8px 13px;
+        background: #1976d2;
+        color: white !important;
+        text-decoration: none;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        border: none;
+    }
+
+    .harvest-delete-button {
+        display: inline-block;
+        padding: 8px 13px;
+        background: #d32f2f;
+        color: white !important;
+        text-decoration: none;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        border: none;
+    }
+
+    .harvest-edit-button:hover {
+        background: #125aa0;
+    }
+
+    .harvest-delete-button:hover {
+        background: #a51f1f;
+    }
+
+
+    /* =========================
+       ADD HARVEST BUTTON
+    ========================== */
+
+    .harvest-add-button {
+        display: inline-block;
+        padding: 11px 18px;
+        background: #2e7d32;
+        color: white !important;
+        text-decoration: none;
+        border-radius: 7px;
+        font-size: 15px;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .harvest-add-button:hover {
+        background: #1b5e20;
+    }
+
+
+    /* =========================
+       BACK BUTTON
+    ========================== */
+
+    .harvest-back-button {
+        display: inline-block;
+        margin-top: 25px;
+        padding: 10px 17px;
+        background: #eeeeee;
+        color: #333 !important;
+        text-decoration: none;
+        border-radius: 7px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .harvest-back-button:hover {
+        background: #dddddd;
+    }
+
+
+    /* =========================
+       EMPTY STATE
+    ========================== */
+
+    .harvest-empty {
+        text-align: center;
+        background: #ffffff;
+        padding: 45px 20px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+    }
+
+    .harvest-empty h3 {
+        margin-bottom: 10px;
+    }
+
+    .harvest-empty p {
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 768px) {
+
+        .harvest-page .page-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .harvest-add-button {
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .harvest-actions {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .harvest-edit-button,
+        .harvest-delete-button {
+            text-align: center;
+        }
+    }
+
+</style>
+
+
+<div class="container harvest-page">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <section class="page-header">
+
+        <div>
+
+            <h1>
+                🌾 {% trans "Harvest Management" %}
+            </h1>
+
+            <p>
+                {% trans "Manage your crop harvest records" %}
+            </p>
+
+        </div>
+
+
+        <a
+            href="{% url 'harvest_add' %}"
+            class="harvest-add-button"
+        >
+            ➕ {% trans "Add New Harvest" %}
+        </a>
+
+    </section>
+
+
+    <!-- =========================
+         HARVEST TABLE
+    ========================== -->
+
+    <section class="table-section">
+
+        {% if harvests %}
+
+        <div class="harvest-table-wrapper">
+
+            <table class="harvest-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            {% trans "ID" %}
+                        </th>
+
+                        <th>
+                            {% trans "Crop" %}
+                        </th>
+
+                        <th>
+                            {% trans "Harvest Date" %}
+                        </th>
+
+                        <th>
+                            {% trans "Quantity" %}
+                        </th>
+
+                        <th>
+                            {% trans "Unit" %}
+                        </th>
+
+                        <th>
+                            {% trans "Quality" %}
+                        </th>
+
+                        <th>
+                            {% trans "Notes" %}
+                        </th>
+
+                        <th>
+                            {% trans "Actions" %}
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for harvest in harvests %}
+
+                    <tr>
+
+                        <td>
+                            {{ harvest.harvest_id }}
+                        </td>
+
+
+                        <td>
+                            <strong>
+                                {{ harvest.crop.crop_name }}
+                            </strong>
+                        </td>
+
+
+                        <td>
+                            {{ harvest.harvest_date|date:"d M Y" }}
+                        </td>
+
+
+                        <td>
+                            {{ harvest.quantity }}
+                        </td>
+
+
+                        <td>
+                            {{ harvest.unit }}
+                        </td>
+
+
+                        <td>
+                            {{ harvest.quality|default:"-" }}
+                        </td>
+
+
+                        <td>
+                            {{ harvest.notes|default:"-" }}
+                        </td>
+
+
+                        <td>
+
+                            <div class="harvest-actions">
+
+                                <a
+                                    href="{% url 'harvest_edit' harvest.harvest_id %}"
+                                    class="harvest-edit-button"
+                                >
+                                    ✏️ {% trans "Edit" %}
+                                </a>
+
+
+                                <a
+                                    href="{% url 'harvest_delete' harvest.harvest_id %}"
+                                    class="harvest-delete-button"
+                                >
+                                    🗑️ {% trans "Delete" %}
+                                </a>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        {% else %}
+
+        <!-- =========================
+             EMPTY STATE
+        ========================== -->
+
+        <div class="harvest-empty">
+
+            <h3>
+                🌾 {% trans "No Harvest Records Found" %}
+            </h3>
+
+            <p>
+                {% trans "No harvest records have been added yet." %}
+            </p>
+
+            <a
+                href="{% url 'harvest_add' %}"
+                class="harvest-add-button"
+            >
+                ➕ {% trans "Add New Harvest" %}
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- =========================
+         BACK TO HOME
+    ========================== -->
+
+    <div>
+
+        <a
+            href="{% url 'home' %}"
+            class="harvest-back-button"
+        >
+            ← {% trans "Back to Home" %}
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

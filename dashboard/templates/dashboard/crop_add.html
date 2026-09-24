@@ -1,0 +1,378 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as CURRENT_LANGUAGE %}
+
+<!DOCTYPE html>
+<html lang="{{ CURRENT_LANGUAGE }}">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% translate "Add Crop" %} - ShetiMitra</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=19">
+
+    <style>
+
+        .header {
+            position: relative;
+        }
+
+        .language-selector {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+
+        .language-selector select {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+
+            .language-selector {
+                position: static;
+                margin-top: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- Header -->
+
+<header class="header">
+
+    <div class="logo">
+        🌾 ShetiMitra
+    </div>
+
+    <div class="tagline">
+        {% translate "Smart Agriculture Management System" %}
+    </div>
+
+
+    <!-- Language Selector -->
+
+    <div class="language-selector">
+
+        <form
+            method="post"
+            action="{% url 'set_language' %}"
+        >
+
+            {% csrf_token %}
+
+            <input
+                type="hidden"
+                name="next"
+                value="{{ request.get_full_path }}"
+            >
+
+            <select
+                name="language"
+                onchange="this.form.submit()"
+            >
+
+                <option
+                    value="en"
+                    {% if CURRENT_LANGUAGE == 'en' %}selected{% endif %}
+                >
+                    English
+                </option>
+
+                <option
+                    value="mr"
+                    {% if CURRENT_LANGUAGE == 'mr' %}selected{% endif %}
+                >
+                    मराठी
+                </option>
+
+                <option
+                    value="hi"
+                    {% if CURRENT_LANGUAGE == 'hi' %}selected{% endif %}
+                >
+                    हिंदी
+                </option>
+
+            </select>
+
+        </form>
+
+    </div>
+
+</header>
+
+
+
+<!-- Main Content -->
+
+<main class="container">
+
+    <section class="form-page">
+
+
+        <!-- Page Header -->
+
+        <div class="form-header">
+
+            <h1>
+                🌱 {% translate "Add New Crop" %}
+            </h1>
+
+            <p>
+                {% translate "Enter crop details to register a new crop." %}
+            </p>
+
+        </div>
+
+
+
+        <!-- Crop Form -->
+
+        <form
+            method="POST"
+            class="farmer-form"
+        >
+
+            {% csrf_token %}
+
+
+
+            <!-- Farm -->
+
+            <div class="form-group">
+
+                <label for="farm">
+
+                    🚜 {% translate "Farm" %}
+
+                </label>
+
+
+                <select
+                    name="farm"
+                    id="farm"
+                    required
+                >
+
+                    <option value="">
+
+                        {% translate "Select Farm" %}
+
+                    </option>
+
+
+                    {% for farm in farms %}
+
+                        <option value="{{ farm.farm_id }}">
+
+                            {{ farm.farm_name }} - {{ farm.farmer.name }}
+
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+
+            <!-- Crop Name -->
+
+            <div class="form-group">
+
+                <label for="crop_name">
+
+                    🌱 {% translate "Crop Name" %}
+
+                </label>
+
+
+                <input
+                    type="text"
+                    name="crop_name"
+                    id="crop_name"
+                    placeholder="{% translate 'Enter crop name' %}"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- Season -->
+
+            <div class="form-group">
+
+                <label for="season">
+
+                    🌤️ {% translate "Season" %}
+
+                </label>
+
+
+                <select
+                    name="season"
+                    id="season"
+                    required
+                >
+
+                    <option value="">
+
+                        {% translate "Select Season" %}
+
+                    </option>
+
+                    <option value="Kharif">
+                        {% translate "Kharif" %}
+                    </option>
+
+                    <option value="Rabi">
+                        {% translate "Rabi" %}
+                    </option>
+
+                    <option value="Summer">
+                        {% translate "Summer" %}
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- Sowing Date -->
+
+            <div class="form-group">
+
+                <label for="sowing_date">
+
+                    📅 {% translate "Sowing Date" %}
+
+                </label>
+
+
+                <input
+                    type="date"
+                    name="sowing_date"
+                    id="sowing_date"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- Expected Harvest Date -->
+
+            <div class="form-group">
+
+                <label for="expected_harvest_date">
+
+                    🌾 {% translate "Expected Harvest Date" %}
+
+                </label>
+
+
+                <input
+                    type="date"
+                    name="expected_harvest_date"
+                    id="expected_harvest_date"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- Area -->
+
+            <div class="form-group">
+
+                <label for="area_acres">
+
+                    📐 {% translate "Area (Acres)" %}
+
+                </label>
+
+
+                <input
+                    type="number"
+                    name="area_acres"
+                    id="area_acres"
+                    placeholder="{% translate 'Enter area in acres' %}"
+                    step="0.01"
+                    min="0"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- Buttons -->
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+
+                    💾 {% translate "Save Crop" %}
+
+                </button>
+
+
+                <a
+                    href="{% url 'crop_list' %}"
+                    class="secondary-button"
+                >
+
+                    ← {% translate "Back to Crop List" %}
+
+                </a>
+
+            </div>
+
+
+        </form>
+
+    </section>
+
+</main>
+
+
+
+<!-- Footer -->
+
+<footer class="footer">
+
+    <p>
+
+        © 2026 ShetiMitra |
+
+        {% translate "Smart Agriculture Management System" %}
+
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
